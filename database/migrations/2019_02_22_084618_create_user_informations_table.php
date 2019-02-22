@@ -18,7 +18,7 @@ class CreateUserInformationsTable extends Migration
             $table->string('position');
             $table->string('department');
             $table->string('phone');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->unique();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
