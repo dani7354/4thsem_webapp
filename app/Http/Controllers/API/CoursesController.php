@@ -31,7 +31,14 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_course = new Course();
+        $new_course->name = $request->name;
+        $new_course->description = $request->description;
+        $new_course->start = $request->start;
+        $new_course->end = $request->end;
+        //User ID
+        $new_course->save();
+        return http_response_code(201);
     }
 
     /**
@@ -42,7 +49,8 @@ class CoursesController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $found_course = $this->course->find($course)->first();
+        return response()->json($found_course);
     }
 
     /**
