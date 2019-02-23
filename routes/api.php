@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResources([
-    'courses' => 'API\CoursesController'
+    'courses' => 'API\CoursesController',
+    'article' => 'API\ArticlesController'
 ]);
