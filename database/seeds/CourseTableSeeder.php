@@ -12,7 +12,7 @@ class CourseTableSeeder extends Seeder
      */
     public function run()
     {
-        $host = \App\User::where('id', '1')->first();
+
 
         $course1 = new \App\Course();
         $course1->name = "Lær at afkalke din elkeddel";

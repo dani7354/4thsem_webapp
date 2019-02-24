@@ -8,10 +8,7 @@ use App\Http\Controllers\Controller;
 
 class CoursesController extends Controller
 {
-    public function __construct(Course $course)
-    {
-        $this->course = $course;
-    }
+
 
     /**
      * Display a listing of the resource.
@@ -20,7 +17,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        return response()->json($this->course->all());
+        return response()->json(Course::get(), 200);
     }
 
     /**
@@ -31,14 +28,8 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        $new_course = new Course();
-        $new_course->name = $request->name;
-        $new_course->description = $request->description;
-        $new_course->start = $request->start;
-        $new_course->end = $request->end;
-        //User ID
-        $new_course->save();
-        return http_response_code(201);
+       $course = Course::create($request->all());
+        return response()->json($course, 201);
     }
 
     /**
@@ -47,10 +38,9 @@ class CoursesController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        $found_course = $this->course->find($course)->first();
-        return response()->json($found_course);
+        return response()->json(Course::find($id), 200);
     }
 
     /**
@@ -62,17 +52,20 @@ class CoursesController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $course->update($request->all());
+        return response()->json($course, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Course $course
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        return response()->json(null, 204);
     }
 }
