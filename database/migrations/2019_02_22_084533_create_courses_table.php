@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('description');
+            $table->string('place');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer('user_id')->unsigned(); // host
