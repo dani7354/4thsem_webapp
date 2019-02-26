@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 class CoursesController extends Controller
 {
@@ -28,6 +30,11 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), Course::$validation_rules);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
        $course = Course::create($request->all());
         return response()->json($course, 201);
     }
@@ -35,12 +42,14 @@ class CoursesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return response()->json(Course::find($id), 200);
+        $course = Course::find($id);
+        return is_null($course) ? response()->json(null, 404) : response($course, 200);
+
     }
 
     /**
@@ -52,6 +61,10 @@ class CoursesController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        $validator = Validator::make($request->all(), Course::$validation_rules);
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
         $course->update($request->all());
         return response()->json($course, 200);
     }
@@ -59,12 +72,15 @@ class CoursesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course $course
+     * @param $id
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
+        $course = Course::find($id);
+        if(is_null($course)){
+            return response()->json(null, 404);
+        }
         $course->delete();
         return response()->json(null, 204);
     }
