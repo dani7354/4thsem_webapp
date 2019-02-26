@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Course;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -82,6 +83,24 @@ class CoursesController extends Controller
             return response()->json(null, 404);
         }
         $course->delete();
+        return response()->json(null, 204);
+    }
+
+    public function participants(Request $request, Course $course){
+        $participants = $course->participants();
+
+        return response()->json($participants, 200);
+    }
+
+    /**
+     * @param Request $request
+     * @param Course $course
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function participate(Request $request, Course $course){
+        // TODO: should be the authenticated user
+
+        $course->participants()->attach($request['user_id']);
         return response()->json(null, 204);
     }
 }

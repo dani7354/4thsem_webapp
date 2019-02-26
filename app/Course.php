@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+
 
 class Course extends Model
 {
@@ -11,17 +13,16 @@ class Course extends Model
         'description' => 'required',
         'start' =>'required',
         'end' => 'required',
-        'user_id' => 'required'
 
     );
     protected $fillable = [
         'name', 'description', 'start', 'end', 'user_id',
     ];
     public function participants(){
-        $this->belongsToMany(User::class);
+        return $this->belongsToMany('App\User', 'user_course', 'course_id', 'user_id');
     }
     public function host(){
-        $this->belongsTo(User::class);
+       return $this->belongsTo(User::class);
     }
 
 }

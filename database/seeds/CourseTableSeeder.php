@@ -31,6 +31,7 @@ class CourseTableSeeder extends Seeder
         $course2->user_id = 1;
         $course2->save();
 
+
         $course3 = new Course();
         $course3->name = "Lær at tænde for fjernsynet";
         $course3->description = "Vi lærer i fællesskab, hvordan man betjener et tv, hvordan man skifter batterier i en fjernbetjening osv.";

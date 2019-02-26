@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ArticlesController extends Controller
 {
@@ -15,7 +16,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Article::get(), 200);
     }
 
     /**
@@ -26,18 +27,26 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), Article::$validation_rules);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
+        $article = Course::create($request->all());
+        return response()->json($article, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $article = Article::find($id);
+        return is_null($article) ? response()->json(null, 404) : response($article, 200);
+
     }
 
     /**
@@ -49,17 +58,28 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $validator = Validator::make($request->all(), Article::$validation_rules);
+        if($validator->fails()){
+            return response()->json($validator->errors(), 400);
+        }
+        $article->update($request->all());
+        return response()->json($article, 200);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Article  $article
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        if(is_null($article)){
+            return response()->json(null, 404);
+        }
+        $article->delete();
+        return response()->json(null, 204);
     }
 }

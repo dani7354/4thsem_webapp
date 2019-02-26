@@ -20,6 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResources([
     'courses' => 'API\CoursesController',
-    'article' => 'API\ArticlesController',
+    'articles' => 'API\ArticlesController',
     'deadlines' => 'API\DeadlinesController'
 ]);
+
+
+Route::get('/courses/{course}/participants', 'API\CoursesController@participants');
+Route::post('/courses/{course}/participants', 'API\CoursesController@participate');
