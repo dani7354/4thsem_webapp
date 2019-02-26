@@ -22,6 +22,8 @@ class CourseTableSeeder extends Seeder
         $course1->end = new DateTime('2019-04-10T20:00');
         $course1->user_id = 1; // Arrangør
         $course1->save();
+        $course1->participants()->attach(1);
+        $course1->participants()->attach(2);
 
         $course2 = new Course();
         $course2->name = "Lær at programmere";

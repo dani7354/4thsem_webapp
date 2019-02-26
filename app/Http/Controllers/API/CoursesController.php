@@ -87,7 +87,7 @@ class CoursesController extends Controller
     }
 
     public function participants(Request $request, Course $course){
-        $participants = $course->participants();
+        $participants = $course->participants()->get();
 
         return response()->json($participants, 200);
     }
