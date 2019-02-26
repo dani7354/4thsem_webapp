@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
             $table->longText('description');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned(); // host
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
