@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    public static $validation_rules = [
+    public static $validation_rules = array(
         'name' => 'required',
         'description' => 'required',
         'start' =>'required',
         'end' => 'required',
         'user_id' => 'required'
 
-    ];
+    );
     protected $fillable = [
         'name', 'description', 'start', 'end', 'user_id',
     ];
