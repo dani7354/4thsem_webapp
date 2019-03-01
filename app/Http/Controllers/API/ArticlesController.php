@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Article;
+use App\Http\Controllers\Auth;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Course;
 
 class ArticlesController extends Controller
 {
@@ -32,7 +35,10 @@ class ArticlesController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(), 400);
         }
-        $article = Course::create($request->all());
+        $article = Article::create($request->all());
+        $article->date_created = now();
+        $article->user_id = auth()->id();
+        $article->save();
         return response()->json($article, 201);
     }
 
@@ -81,5 +87,12 @@ class ArticlesController extends Controller
         }
         $article->delete();
         return response()->json(null, 204);
+    }
+
+    public function get_by_tag($tag)
+    {
+        $articles = Article::where('tags', 'LIKE', '%' . $tag . '%')->get();
+        return response()->json($articles, 200);
+
     }
 }

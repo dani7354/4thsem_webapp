@@ -24,6 +24,11 @@ Route::apiResources([
     'deadlines' => 'API\DeadlinesController'
 ]);
 
+// courses
 
 Route::get('/courses/{course}/participants', 'API\CoursesController@participants');
 Route::post('/courses/{course}/participants', 'API\CoursesController@participate');
+
+//articles
+
+Route::get('/articles/tag/{tag}', 'API\ArticlesController@get_by_tag');

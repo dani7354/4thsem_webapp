@@ -16,9 +16,10 @@ class Course extends Model
 
     );
     protected $fillable = [
-        'name', 'description', 'start', 'end', 'user_id',
+        'name', 'description', 'start', 'end', 'user_id', 'location'
     ];
-    public function participants(){
+    public function participants()
+    {
         return $this->belongsToMany('App\User', 'user_course', 'course_id', 'user_id');
     }
     public function host(){
