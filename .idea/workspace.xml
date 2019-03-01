@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e82fe9c3-b8bf-4b2a-a2d1-27a0c95bf6a5" name="Default Changelist" comment="Course:&#10;- added place field">
-      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/CoursesTest.php" afterDir="false" />
+    <list default="true" id="e82fe9c3-b8bf-4b2a-a2d1-27a0c95bf6a5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Course.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Course.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CoursesTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CoursesTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+            <state relative-caret-position="471">
+              <caret line="147" column="35" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
               <folding>
                 <element signature="e#33#46#0#PHP" expanded="true" />
               </folding>
@@ -425,7 +420,7 @@
       <workItem from="1551005192404" duration="1054000" />
       <workItem from="1551019754214" duration="4791000" />
       <workItem from="1551167555867" duration="12323000" />
-      <workItem from="1551428655299" duration="5001000" />
+      <workItem from="1551428655299" duration="6038000" />
     </task>
     <task id="LOCAL-00001" summary="Added models and migrations for authentication">
       <created>1550824963293</created>
@@ -525,43 +520,57 @@
       <option name="project" value="LOCAL" />
       <updated>1551180491178</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Courses:&#10;Added test class + tests for testing status codes on crudoperations">
+      <created>1551440395304</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1551440395304</updated>
+    </task>
+    <task id="LOCAL-00016" summary="tests for crud">
+      <created>1551440573726</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1551440573726</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 36m 35s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 12h 43m 00s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 36m 52s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 12h 46m 06s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 11s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 34m 33s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 16s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 35m 36s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 21s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 35m 52s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 23s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 36m 11s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 24s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 36m 33s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 26s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 37m 56s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 27s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 38m 15s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 37m 32s.xml">
+    <history-entry file="phpunit_xml - 2019.03.01 at 13h 39m 25s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36810000" />
+    <option name="totallyTimeSpent" value="37847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -579,7 +588,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32920355" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32920355" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -606,7 +615,9 @@
     <MESSAGE value="Added return in the course and user model" />
     <MESSAGE value="CourseController: &#10;- Get participants for a specific course works" />
     <MESSAGE value="Course:&#10;- added place field" />
-    <option name="LAST_COMMIT_MESSAGE" value="Course:&#10;- added place field" />
+    <MESSAGE value="Courses:&#10;Added test class + tests for testing status codes on crudoperations" />
+    <MESSAGE value="tests for crud" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests for crud" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
@@ -939,8 +950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+        <state relative-caret-position="471">
+          <caret line="147" column="35" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
           <folding>
             <element signature="e#33#46#0#PHP" expanded="true" />
           </folding>

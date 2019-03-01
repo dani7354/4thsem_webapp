@@ -18,6 +18,7 @@ class CoursesTest extends TestCase
      * @return void
      */
 
+    // READ
     public function testCanGetAllCourses()
     {
         $response = $this->get('/api/courses/');
@@ -39,7 +40,9 @@ class CoursesTest extends TestCase
 
     }
 
-    public function testCanCreateCourse(){
+    // CREATE
+
+    public function testCreateCourse(){
 
         $body = array(
             'name' => 'Madkursus',
@@ -56,6 +59,44 @@ class CoursesTest extends TestCase
         $response->assertStatus(201);
     }
 
+    public function testCreateReturns400IfFieldIsMissing()
+    {
+
+        $body = array(
+         /*   'name' => 'Madkursus',*/
+            'description' => 'Lær at lave italiensk mad',
+            'start' => '2019-04-10T08:00',
+            'end' => '2019-04-10T20:00',
+            'location' => 'Køkken 2',
+            'user_id' => 1
+
+        );
+
+
+        $response = $this->post('/api/courses', $body);
+        $response->assertStatus(400);
+
+    }
+    public function testCreateReturns400IfMoreFieldsAreMissing()
+    {
+
+        $body = array(
+              'name' => 'Madkursus',
+            'description' => 'Lær at lave italiensk mad',
+            /*'start' => '2019-04-10T08:00',
+            'end' => '2019-04-10T20:00', */
+            'location' => 'Køkken 2',
+            'user_id' => 1
+
+        );
+
+
+        $response = $this->post('/api/courses', $body);
+        $response->assertStatus(400);
+
+    }
+
+    // UPDATE
     public function testCanUpdateCourse(){
         $body = array(
             'name' => 'Madkursus',
@@ -67,9 +108,30 @@ class CoursesTest extends TestCase
 
         );
         $course =  Course::get()->first();
+
         $response = $this->put('/api/courses/' . $course->id, $body);
         $response->assertStatus(200);
     }
+
+
+    public function testUpdateReturnsErrorIfFieldsAreMissing(){
+        $body = array(
+            'name' => 'Madkursus',
+         /*   'description' => 'Lær at lave italiensk mad', */
+            'start' => '2019-04-10T08:00',
+      /*      'end' => '2019-04-10T20:00', */
+            'location' => 'Køkken 2',
+            'user_id' => 1
+
+        );
+        $course =  Course::get()->first();
+
+        $response = $this->put('/api/courses/' . $course->id, $body);
+        $response->assertStatus(400);
+    }
+
+
+    // DELETE
 
     public function testCanDeleteCourse(){
         $course =  Course::get()->last();
@@ -78,6 +140,16 @@ class CoursesTest extends TestCase
         $response->assertStatus(204);
 
     }
+
+    public function DeleteReturnsErrorIfCourseDoesNotExist(){
+        $course_id =  99;
+
+        $response = $this->delete('/api/courses/' . $course_id);
+        $response->assertStatus(400);
+
+    }
+
+
 
 
 
