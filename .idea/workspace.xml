@@ -19,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
+            <state relative-caret-position="246">
               <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
               <folding>
                 <element signature="e#44#59#0#PHP" expanded="true" />
@@ -67,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="147" column="35" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
+            <state relative-caret-position="501">
+              <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
               <folding>
                 <element signature="e#33#46#0#PHP" expanded="true" />
               </folding>
@@ -303,29 +303,6 @@
             <path>
               <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="factories" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="seeds" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -420,7 +397,7 @@
       <workItem from="1551005192404" duration="1054000" />
       <workItem from="1551019754214" duration="4791000" />
       <workItem from="1551167555867" duration="12323000" />
-      <workItem from="1551428655299" duration="6038000" />
+      <workItem from="1551428655299" duration="6994000" />
     </task>
     <task id="LOCAL-00001" summary="Added models and migrations for authentication">
       <created>1550824963293</created>
@@ -534,43 +511,50 @@
       <option name="project" value="LOCAL" />
       <updated>1551440573726</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="CoursesTest:&#10;tests for errors">
+      <created>1551443993856</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1551443993856</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 43m 00s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 39m 05s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 12h 46m 06s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 39m 10s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 34m 33s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 39m 33s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 35m 36s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 39m 52s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 35m 52s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 06s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 36m 11s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 12s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 36m 33s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 15s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 37m 56s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 17s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 38m 15s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 25s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.01 at 13h 39m 25s.xml">
+    <history-entry file="phpunit_xml - 2019.03.02 at 08h 40m 36s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37847000" />
+    <option name="totallyTimeSpent" value="38803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
@@ -617,7 +601,8 @@
     <MESSAGE value="Course:&#10;- added place field" />
     <MESSAGE value="Courses:&#10;Added test class + tests for testing status codes on crudoperations" />
     <MESSAGE value="tests for crud" />
-    <option name="LAST_COMMIT_MESSAGE" value="tests for crud" />
+    <MESSAGE value="CoursesTest:&#10;tests for errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="CoursesTest:&#10;tests for errors" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
@@ -940,7 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
+        <state relative-caret-position="246">
           <caret line="81" column="29" lean-forward="true" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
           <folding>
             <element signature="e#44#59#0#PHP" expanded="true" />
@@ -950,8 +935,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="147" column="35" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
+        <state relative-caret-position="501">
+          <caret line="149" column="5" lean-forward="true" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
           <folding>
             <element signature="e#33#46#0#PHP" expanded="true" />
           </folding>

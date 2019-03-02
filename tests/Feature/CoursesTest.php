@@ -141,11 +141,11 @@ class CoursesTest extends TestCase
 
     }
 
-    public function DeleteReturnsErrorIfCourseDoesNotExist(){
-        $course_id =  99;
+    public function testDeleteReturnsErrorIfCourseDoesNotExist(){
+        $course_id =  1000;
 
         $response = $this->delete('/api/courses/' . $course_id);
-        $response->assertStatus(400);
+        $response->assertStatus(404);
 
     }
 
