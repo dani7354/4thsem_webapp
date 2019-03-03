@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeadlineTest extends TestCase
 {
-    // TODO: test CRUD
     // READ
     public function testCanGetAllDeadlines()
     {
