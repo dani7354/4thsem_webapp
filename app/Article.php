@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+
+
     protected $fillable = array(
         'title', 'content', 'tags'
     );
