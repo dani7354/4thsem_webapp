@@ -6,6 +6,7 @@ use App\Deadline;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+// TODO: implement CRUD methods
 class DeadlinesController extends Controller
 {
     /**

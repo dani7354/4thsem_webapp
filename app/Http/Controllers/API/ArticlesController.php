@@ -32,13 +32,17 @@ class ArticlesController extends Controller
     {
         $validator = Validator::make($request->all(), Article::$validation_rules);
 
-        if($validator->fails()){
+        if($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        $article = Article::create($request->all());
+       $article = new Article();
+      $article->title = $request['title'];
+        $article->content = $request['content'];
+        $article->tags = $request['tags'];
         $article->date_created = now();
-        $article->user_id = auth()->id();
+        $article->user_id = 1; //TODO: change this shit!
         $article->save();
+
         return response()->json($article, 201);
     }
 
