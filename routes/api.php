@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->group(function (){
 
-Route::apiResources([
-    'courses' => 'API\CoursesController',
-    'articles' => 'API\ArticlesController',
-    'deadlines' => 'API\DeadlinesController'
-]);
+
+    Route::apiResources([
+        'courses' => 'API\CoursesController',
+        'articles' => 'API\ArticlesController',
+        'deadlines' => 'API\DeadlinesController'
+    ]);
 
 // courses
 
-Route::get('/courses/{course}/participants', 'API\CoursesController@participants');
-Route::post('/courses/{course}/participants', 'API\CoursesController@participate');
+    Route::get('/courses/{course}/participants', 'API\CoursesController@participants');
+    Route::post('/courses/{course}/participants', 'API\CoursesController@participate');
 
 //articles
 
-Route::get('/articles/tag/{tag}', 'API\ArticlesController@get_by_tag');
+    Route::get('/articles/tag/{tag}', 'API\ArticlesController@get_by_tag');
+});
