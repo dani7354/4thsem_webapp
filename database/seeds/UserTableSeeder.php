@@ -27,6 +27,7 @@ class UserTableSeeder extends Seeder
     $manager->name = 'Admin user';
     $manager->email = 'admin@example.com';
     $manager->password = bcrypt('secret');
+    $manager->api_token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2F";
     $manager->save();
     $manager->roles()->attach($role_manager);
 
