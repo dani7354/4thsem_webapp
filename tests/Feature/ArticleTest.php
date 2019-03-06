@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ArticleTest extends TestCase
 {
-    // TODO: test CRUD
+  private $token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2F";
     /**
      * A basic feature test example.
      *
@@ -23,6 +23,7 @@ class ArticleTest extends TestCase
     public function testCanGetArticle()
     {
         $article =  Article::get()->first();
+
 
         $response = $this->get('/api/articles/' . $article->id);
         $response->assertStatus(200);

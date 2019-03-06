@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Course;
+use Exception;
 use http\Client\Curl\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -99,8 +102,12 @@ class CoursesController extends Controller
      */
     public function participate(Request $request, Course $course){
         // TODO: should be the authenticated user
-
-        $course->participants()->attach($request['user_id']);
-        return response()->json(null, 204);
+        try{
+            $course->participants()->attach(Auth::user()->id);
+        }
+        catch (Exception $exception){
+            return response()->json($exception->getMessage(), 400);
+        }
+        return response()->json(null, 200);
     }
 }
