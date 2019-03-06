@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
         $employee->name = 'Employee Name';
     $employee->email = 'employee@example.com';
     $employee->password = bcrypt('secret');
+      $employee->api_token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2G";
     $employee->save();
     $employee->roles()->attach($role_employee);
 
