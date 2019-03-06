@@ -8,13 +8,9 @@ use Illuminate\Support\Facades\App;
 
 class Course extends Model
 {
-    public static $validation_rules = array(
-        'name' => 'required',
-        'description' => 'required',
-        'start' =>'required',
-        'end' => 'required',
-
-    );
+   protected $hidden = [
+     'created_at', 'updated_at'
+   ];
     protected $fillable = [
         'name', 'description', 'start', 'end', 'user_id', 'location'
     ];
@@ -25,5 +21,12 @@ class Course extends Model
     public function host(){
        return $this->belongsTo(User::class);
     }
+    public static $validation_rules = array(
+        'name' => 'required',
+        'description' => 'required',
+        'start' =>'required',
+        'end' => 'required',
+
+    );
 
 }

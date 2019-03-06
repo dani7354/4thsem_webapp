@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
-
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
     protected $fillable = array(
         'title', 'content', 'tags'
     );

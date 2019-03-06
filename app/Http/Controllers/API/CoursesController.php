@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Course;
 use Exception;
-use http\Client\Curl\User;
+use App\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,13 +34,26 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Course::$validation_rules);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $validator = Validator::make($request->all(), Course::$validation_rules);
 
-        if($validator->fails()){
-            return response()->json($validator->errors(), 400);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $course = Course::create(
+                [
+                    'name' => $request['name'],
+                    'description' => $request['description'],
+                    'start' => $request['start'],
+                    'end' => $request['end'],
+                    'location' => $request['location'],
+                    'user_id' => Auth::user()->id,
+                ]);
+            return response()->json($course, 201);
+        }else{
+            return response()->json(null, 403);
         }
-       $course = Course::create($request->all());
-        return response()->json($course, 201);
     }
 
     /**
