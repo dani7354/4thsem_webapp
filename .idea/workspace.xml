@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e82fe9c3-b8bf-4b2a-a2d1-27a0c95bf6a5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Course.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Course.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UserInformation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ArticleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ArticleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CoursesTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CoursesTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/DeadlineTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DeadlineTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,21 +20,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+        <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="51" column="19" lean-forward="true" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+            <state relative-caret-position="510">
+              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
               <folding>
-                <element signature="e#44#59#0#PHP" expanded="true" />
+                <element signature="e#7#20#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,6 +44,47 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/ArticleTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="82" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="82" />
+              <folding>
+                <element signature="e#33#52#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="5" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#33#46#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/ExampleTest.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/Feature/DeadlineTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+              <folding>
+                <element signature="e#33#50#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Article.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -63,19 +94,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/GuardsAttributes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+            <state relative-caret-position="-41">
+              <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
               <folding>
                 <element signature="e#23#63#0#PHP" expanded="true" />
               </folding>
@@ -84,30 +106,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_090856_create_user_course_table.php">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_075737_create_roles_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="36" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="36" />
+            <state relative-caret-position="405">
+              <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+        <entry file="file://$PROJECT_DIR$/database/seeds/RoleTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_084533_create_courses_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+            <state relative-caret-position="300">
+              <caret line="20" column="33" selection-start-line="19" selection-start-column="27" selection-end-line="20" selection-end-column="33" />
               <folding>
-                <element signature="e#7#45#0#PHP" expanded="true" />
+                <element signature="e#7#38#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,23 +175,23 @@
         <option value="$PROJECT_DIR$/database/seeds/CourseTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_02_22_084533_create_courses_table.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/tests/Feature/CoursesTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/ArticlesController.php" />
         <option value="$PROJECT_DIR$/app/Deadline.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/DeadlinesController.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/DeadlineTest.php" />
         <option value="$PROJECT_DIR$/tests/Unit/ExampleTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/BasicAuthentication.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/ArticleTest.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php" />
         <option value="$PROJECT_DIR$/app/Course.php" />
         <option value="$PROJECT_DIR$/app/Article.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/ArticleTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/CoursesTest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/DeadlineTest.php" />
       </list>
     </option>
   </component>
@@ -379,6 +392,17 @@
               <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="4thsem_webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="4thsem_webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Feature" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -407,6 +431,10 @@
     </option>
   </component>
   <component name="RunManager" selected="PHPUnit.phpunit.xml">
+    <configuration name="ArticleTest.testCanGetAllArticle" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ArticleTest" file="$PROJECT_DIR$/tests/Feature/ArticleTest.php" method="testCanGetAllArticle" scope="Method" />
+      <method v="2" />
+    </configuration>
     <configuration name="ArticleTest.testCanGetArticle" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\ArticleTest" file="$PROJECT_DIR$/tests/Feature/ArticleTest.php" method="testCanGetArticle" scope="Method" />
       <method v="2" />
@@ -421,6 +449,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ArticleTest.testCanGetAllArticle" />
         <item itemvalue="PHPUnit.ArticleTest.testCanGetArticle" />
         <item itemvalue="PHPUnit.ArticleTest.testCreateArticle" />
         <item itemvalue="PHPUnit.ArticleTest.testCreateArticle" />
@@ -452,7 +481,7 @@
       <workItem from="1551428655299" duration="7318000" />
       <workItem from="1551605228885" duration="5407000" />
       <workItem from="1551788185721" duration="1309000" />
-      <workItem from="1551855629319" duration="4315000" />
+      <workItem from="1551855629319" duration="5287000" />
     </task>
     <task id="LOCAL-00001" summary="Added models and migrations for authentication">
       <created>1550824963293</created>
@@ -615,43 +644,57 @@
       <option name="project" value="LOCAL" />
       <updated>1551858591487</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="CoursesController&#10;Authorization for creating course works">
+      <created>1551861797634</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1551861797634</updated>
+    </task>
+    <task id="LOCAL-00025" summary="CoursesSeeder&#10;Token for the employee user added">
+      <created>1551862024756</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1551862024756</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ArticleTest_testCanGetArticle - 2019.03.05 at 15h 12m 54s.xml">
-      <configuration name="ArticleTest.testCanGetArticle" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ArticleTest_testCanGetArticle - 2019.03.05 at 15h 13m 01s.xml">
-      <configuration name="ArticleTest.testCanGetArticle" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ArticleTest_testCanGetArticle - 2019.03.05 at 15h 20m 54s.xml">
-      <configuration name="ArticleTest.testCanGetArticle" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ArticleTest_testCanGetArticle - 2019.03.05 at 15h 21m 06s.xml">
-      <configuration name="ArticleTest.testCanGetArticle" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ArticleTest_testCanGetArticle - 2019.03.05 at 15h 21m 11s.xml">
-      <configuration name="ArticleTest.testCanGetArticle" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.05 at 15h 21m 16s.xml">
-      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.05 at 15h 21m 18s.xml">
-      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="phpunit_xml - 2019.03.05 at 15h 21m 24s.xml">
-      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="phpunit_xml - 2019.03.05 at 15h 23m 05s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
     <history-entry file="phpunit_xml - 2019.03.06 at 08h 01m 34s.xml">
       <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="phpunit_xml - 2019.03.06 at 09h 47m 13s.xml">
+      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ArticleTest_testCanGetAllArticle - 2019.03.06 at 09h 54m 11s.xml">
+      <configuration name="ArticleTest.testCanGetAllArticle" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ArticleTest_testCanGetAllArticle - 2019.03.06 at 09h 54m 28s.xml">
+      <configuration name="ArticleTest.testCanGetAllArticle" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ArticleTest_testCanGetAllArticle - 2019.03.06 at 09h 55m 56s.xml">
+      <configuration name="ArticleTest.testCanGetAllArticle" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="ArticleTest_testCanGetAllArticle - 2019.03.06 at 09h 56m 31s.xml">
+      <configuration name="ArticleTest.testCanGetAllArticle" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="phpunit_xml - 2019.03.06 at 09h 56m 38s.xml">
+      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="phpunit_xml - 2019.03.06 at 09h 56m 55s.xml">
+      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="phpunit_xml - 2019.03.06 at 09h 58m 36s.xml">
+      <configuration name="phpunit.xml" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53942000" />
+    <option name="totallyTimeSpent" value="54914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1128" extended-state="0" />
@@ -662,7 +705,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946752" weight="0.3291506" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946752" visible="true" weight="0.3291506" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -671,7 +714,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32920355" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.32920355" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3291506" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3291506" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.3291506" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -707,7 +750,9 @@
     <MESSAGE value="Basic authentication is not working" />
     <MESSAGE value="Basic token authentication is not working" />
     <MESSAGE value="Authorization for participate endpoint works" />
-    <option name="LAST_COMMIT_MESSAGE" value="Authorization for participate endpoint works" />
+    <MESSAGE value="CoursesController&#10;Authorization for creating course works" />
+    <MESSAGE value="CoursesSeeder&#10;Token for the employee user added" />
+    <option name="LAST_COMMIT_MESSAGE" value="CoursesSeeder&#10;Token for the employee user added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
@@ -730,16 +775,6 @@
           <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="58" />
           <folding>
             <element signature="e#7#389#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/RoleTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="33" selection-start-line="19" selection-start-column="27" selection-end-line="20" selection-end-column="33" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -781,20 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_075737_create_roles_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/CreatesApplication.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ExampleTest.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-03-01.log">
@@ -845,32 +870,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" selection-start-line="20" selection-end-line="150" />
-          <folding>
-            <element signature="e#33#46#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/DeadlinesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
           <caret line="82" column="28" selection-start-line="82" selection-start-column="28" selection-end-line="82" selection-end-column="28" />
           <folding>
             <element signature="e#44#61#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/DeadlineTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="e#33#50#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -918,16 +923,6 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/TrustProxies.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="87" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="87" />
-          <folding>
-            <element signature="e#7#20#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/BasicAuthentication.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -943,13 +938,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Middleware/TrimStrings.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ArticleTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/auth.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -995,7 +983,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/API/CoursesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
-          <caret line="51" column="19" lean-forward="true" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
           <folding>
             <element signature="e#44#59#0#PHP" expanded="true" />
           </folding>
@@ -1005,7 +993,7 @@
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/GuardsAttributes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1045,10 +1033,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="-41">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding>
             <element signature="e#23#63#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_22_075737_create_roles_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/RoleTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="33" selection-start-line="19" selection-start-column="27" selection-end-line="20" selection-end-column="33" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="e#7#20#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ArticleTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="82" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="82" />
+          <folding>
+            <element signature="e#33#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/CoursesTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#33#46#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ExampleTest.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/DeadlineTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="128" column="28" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
+          <folding>
+            <element signature="e#33#50#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

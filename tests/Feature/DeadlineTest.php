@@ -9,14 +9,27 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeadlineTest extends TestCase
 {
+
+    private $token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2F";
+    private function addHeaders()
+    {
+        $this->withHeaders(
+            [
+                'Authorization' => 'Bearer ' . $this->token,
+                'Accept' => 'application/json',
+            ]);
+    }
     // READ
     public function testCanGetAllDeadlines()
     {
+        $this->addHeaders();
+
         $response = $this->get('/api/deadlines/');
         $response->assertStatus(200);
     }
     public function testCanGetDeadline()
     {
+        $this->addHeaders();
         $deadline =  Deadline::get()->first();
 
         $response = $this->get('/api/deadlines/' . $deadline->id);
@@ -28,6 +41,7 @@ class DeadlineTest extends TestCase
     // CREATE
 
     public function testCreateDeadline(){
+        $this->addHeaders();
 
         $body = array(
             'name' => 'Maden skal være klar',
@@ -42,6 +56,7 @@ class DeadlineTest extends TestCase
 
     public function testCreateReturns400IfFieldIsMissing()
     {
+        $this->addHeaders();
 
         $body = array(
          /*   'name' => 'Maden skal være klar',*/
@@ -56,6 +71,7 @@ class DeadlineTest extends TestCase
     }
     public function testCreateReturns400IfMoreFieldsAreMissing()
     {
+        $this->addHeaders();
 
         $body = array(
             /*   'name' => 'Maden skal være klar',*/
@@ -71,6 +87,7 @@ class DeadlineTest extends TestCase
 
     // UPDATE
     public function testCanUpdateDeadline(){
+        $this->addHeaders();
         $body = array(
             'name' => 'Maden skal være klar',
             'description' => 'Jørgen og Bent står for at lave mad denne gang',
@@ -84,6 +101,7 @@ class DeadlineTest extends TestCase
 
 
     public function testUpdateReturnsErrorIfFieldsAreMissing(){
+        $this->addHeaders();
         $body = array(
             /*   'name' => 'Maden skal være klar',*/
             'description' => 'Jørgen og Jonna står for at lave mad denne gang'/*,
@@ -99,6 +117,7 @@ class DeadlineTest extends TestCase
     // DELETE
 
     public function testCanDeletedeadline(){
+        $this->addHeaders();
         $deadline =  Deadline::get()->last();
 
         $response = $this->delete('/api/deadlines/' . $deadline->id);
@@ -107,6 +126,7 @@ class DeadlineTest extends TestCase
     }
 
     public function testDeleteReturnsErrorIfDeadlineDoesNotExist(){
+        $this->addHeaders();
         $deadline_id =  1000;
 
         $response = $this->delete('/api/deadlines/' . $deadline_id);

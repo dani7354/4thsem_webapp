@@ -10,6 +10,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ArticleTest extends TestCase
 {
   private $token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2F";
+
+    /**
+     *
+     */
+    private function addHeaders()
+  {
+      $this->withHeaders(
+          [
+              'Authorization' => 'Bearer ' . $this->token,
+              'Accept' => 'application/json',
+          ]);
+  }
     /**
      * A basic feature test example.
      *
@@ -17,11 +29,13 @@ class ArticleTest extends TestCase
      */
     public function testCanGetAllArticle()
     {
+        $this->addHeaders();
         $response = $this->get('/api/articles/');
         $response->assertStatus(200);
     }
     public function testCanGetArticle()
     {
+        $this->addHeaders();
         $article =  Article::get()->first();
 
 
@@ -33,6 +47,7 @@ class ArticleTest extends TestCase
     // CREATE
 
     public function testCreateArticle(){
+        $this->addHeaders();
 
         $body = array(
             'title' => 'Jonna har sidste arbejdsdag',
@@ -47,6 +62,7 @@ class ArticleTest extends TestCase
 
     public function testCreateReturns400IfFieldIsMissing()
     {
+        $this->addHeaders();
 
         $body = array(
        /*     'title' => 'Jonna har sidste arbejdsdag',*/
@@ -63,6 +79,7 @@ class ArticleTest extends TestCase
     }
     public function testCreateReturns400IfMoreFieldsAreMissing()
     {
+        $this->addHeaders();
 
         $body = array(
             'title' => 'Jonna har sidste arbejdsdag',
@@ -80,6 +97,7 @@ class ArticleTest extends TestCase
 
     // UPDATE
     public function testCanUpdateArticle(){
+        $this->addHeaders();
         $body = array(
             'title' => 'Ja mojn do',
             'content' => '...Nu skal hun nemlig på efterløn',
@@ -95,6 +113,7 @@ class ArticleTest extends TestCase
 
 
     public function testUpdateReturnsErrorIfFieldsAreMissing(){
+        $this->addHeaders();
         $body = array(
             'name' => 'Madkursus',
             /*   'description' => 'Lær at lave italiensk mad', */
@@ -114,6 +133,7 @@ class ArticleTest extends TestCase
     // DELETE
 
     public function testCanDeleteCourse(){
+        $this->addHeaders();
         $article =  Article::get()->last();
 
         $response = $this->delete('/api/articles/' . $article->id);
@@ -122,6 +142,7 @@ class ArticleTest extends TestCase
     }
 
     public function testDeleteReturnsErrorIfCourseDoesNotExist(){
+        $this->addHeaders();
         $article_id =  1000;
 
         $response = $this->delete('/api/articles/' . $article_id);

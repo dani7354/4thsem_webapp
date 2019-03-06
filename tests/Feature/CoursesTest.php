@@ -12,6 +12,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class CoursesTest extends TestCase
 {
 
+    private $token = "c8Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZDiXqFSNy9RhK75oAZjk2F";
+    private function addHeaders()
+    {
+        $this->withHeaders(
+            [
+                'Authorization' => 'Bearer ' . $this->token,
+                'Accept' => 'application/json',
+            ]);
+    }
+
     /**
      * A basic feature test example.
      *
@@ -21,11 +31,13 @@ class CoursesTest extends TestCase
     // READ
     public function testCanGetAllCourses()
     {
+        $this->addHeaders();
         $response = $this->get('/api/courses/');
         $response->assertStatus(200);
     }
     public function testCanGetCourse()
     {
+        $this->addHeaders();
         $course =  Course::get()->first();
 
         $response = $this->get('/api/courses/' . $course->id);
@@ -34,6 +46,7 @@ class CoursesTest extends TestCase
     }
     public function testCanGetParticipantsForCourse()
     {
+        $this->addHeaders();
         $course =  Course::get()->first();
         $response = $this->get('/api/courses/' . $course->id . '/participants');
         $response->assertStatus(200);
@@ -43,6 +56,7 @@ class CoursesTest extends TestCase
     // CREATE
 
     public function testCreateCourse(){
+        $this->addHeaders();
 
         $body = array(
             'name' => 'Madkursus',
@@ -61,6 +75,7 @@ class CoursesTest extends TestCase
 
     public function testCreateReturns400IfFieldIsMissing()
     {
+        $this->addHeaders();
 
         $body = array(
          /*   'name' => 'Madkursus',*/
@@ -79,7 +94,7 @@ class CoursesTest extends TestCase
     }
     public function testCreateReturns400IfMoreFieldsAreMissing()
     {
-
+        $this->addHeaders();
         $body = array(
               'name' => 'Madkursus',
             'description' => 'Lær at lave italiensk mad',
@@ -98,6 +113,7 @@ class CoursesTest extends TestCase
 
     // UPDATE
     public function testCanUpdateCourse(){
+        $this->addHeaders();
         $body = array(
             'name' => 'Madkursus',
             'description' => 'Lær at lave italiensk mad',
@@ -115,6 +131,7 @@ class CoursesTest extends TestCase
 
 
     public function testUpdateReturnsErrorIfFieldsAreMissing(){
+        $this->addHeaders();
         $body = array(
             'name' => 'Madkursus',
          /*   'description' => 'Lær at lave italiensk mad', */
@@ -134,6 +151,7 @@ class CoursesTest extends TestCase
     // DELETE
 
     public function testCanDeleteCourse(){
+        $this->addHeaders();
         $course =  Course::get()->last();
 
         $response = $this->delete('/api/courses/' . $course->id);
@@ -142,6 +160,7 @@ class CoursesTest extends TestCase
     }
 
     public function testDeleteReturnsErrorIfCourseDoesNotExist(){
+        $this->addHeaders();
         $course_id =  1000;
 
         $response = $this->delete('/api/courses/' . $course_id);
