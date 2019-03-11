@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <p>You are logged in!</p>
+                    <p>API Token: <p id="token">{{$token}}</p> <button id="update_btn">Update</button></p>
+
                 </div>
             </div>
         </div>
