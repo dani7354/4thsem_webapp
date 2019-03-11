@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Article;
-use App\Http\Controllers\Auth;
-use http\Client\Curl\User;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Course;
 
@@ -30,20 +30,26 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), Article::$validation_rules);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $validator = Validator::make($request->all(), Article::$validation_rules);
 
-        if($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $article = new Article();
+            $article->title = $request['title'];
+            $article->content = $request['content'];
+            $article->tags = $request['tags'];
+            $article->date_created = now();
+            $article->user_id = 1; //TODO: change this shit!
+            $article->save();
+
+            return response()->json($article, 201);
         }
-       $article = new Article();
-      $article->title = $request['title'];
-        $article->content = $request['content'];
-        $article->tags = $request['tags'];
-        $article->date_created = now();
-        $article->user_id = 1; //TODO: change this shit!
-        $article->save();
-
-        return response()->json($article, 201);
+        else{
+            return response()->json(null, 403);
+        }
     }
 
     /**
@@ -68,12 +74,18 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $validator = Validator::make($request->all(), Article::$validation_rules);
-        if($validator->fails()){
-            return response()->json($validator->errors(), 400);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $validator = Validator::make($request->all(), Article::$validation_rules);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $article->update($request->all());
+            return response()->json($article, 200);
         }
-        $article->update($request->all());
-        return response()->json($article, 200);
+        else{
+            return response()->json(null, 403);
+        }
 
     }
 
@@ -85,12 +97,18 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        $article = Article::find($id);
-        if(is_null($article)){
-            return response()->json(null, 404);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $article = Article::find($id);
+            if (is_null($article)) {
+                return response()->json(null, 404);
+            }
+            $article->delete();
+            return response()->json(null, 204);
         }
-        $article->delete();
-        return response()->json(null, 204);
+        else{
+            return response()->json(null, 403);
+        }
     }
 
     public function get_by_tag($tag)

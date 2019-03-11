@@ -78,12 +78,20 @@ class CoursesController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        $validator = Validator::make($request->all(), Course::$validation_rules);
-        if($validator->fails()){
-            return response()->json($validator->errors(), 400);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $validator = Validator::make($request->all(), Course::$validation_rules);
+            if($validator->fails()){
+                return response()->json($validator->errors(), 400);
+            }
+            $course->update($request->all());
+            return response()->json($course, 200);
         }
-        $course->update($request->all());
-        return response()->json($course, 200);
+        else{
+            return response()->json(null, 403);
+        }
+
+
     }
 
     /**
@@ -94,12 +102,18 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::find($id);
-        if(is_null($course)){
-            return response()->json(null, 404);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
+            $course = Course::find($id);
+            if (is_null($course)) {
+                return response()->json(null, 404);
+            }
+            $course->delete();
+            return response()->json(null, 204);
         }
-        $course->delete();
-        return response()->json(null, 204);
+        else {
+            return response()->json(null, 403);
+        }
     }
 
     public function participants(Request $request, Course $course){
@@ -115,12 +129,18 @@ class CoursesController extends Controller
      */
     public function participate(Request $request, Course $course){
         // TODO: should be the authenticated user
-        try{
-            $course->participants()->attach(Auth::user()->id);
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Employee')) {
+
+            try {
+                $course->participants()->attach(Auth::user()->id);
+            } catch (Exception $exception) {
+                return response()->json($exception->getMessage(), 400);
+            }
+            return response()->json(null, 200);
         }
-        catch (Exception $exception){
-            return response()->json($exception->getMessage(), 400);
+        else{
+            return response()->json(null, 403);
         }
-        return response()->json(null, 200);
     }
 }
