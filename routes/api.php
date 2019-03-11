@@ -14,25 +14,62 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->group(function (){
-
-
-    Route::apiResources([
-        'courses' => 'API\CoursesController',
-        'articles' => 'API\ArticlesController',
-        'deadlines' => 'API\DeadlinesController'
-    ]);
-
 // courses
+Route::group(['prefix' => 'courses'], function(){
 
-    Route::get('/courses/{course}/participants', 'API\CoursesController@participants');
-    Route::post('/courses/{course}/participants', 'API\CoursesController@participate');
 
-//articles
+    Route::get('', 'API\CoursesController@index');
+    Route::get('{course}', 'API\CoursesController@show');
 
-    Route::get('/articles/tag/{tag}', 'API\ArticlesController@get_by_tag');
+
+    Route::middleware('auth:api')->group(function () {
+
+        Route::post('', 'API\CoursesController@store');
+        Route::put('{course}', 'API\CoursesController@update');
+        Route::delete('{course}', 'API\CoursesController@destroy');
+
+        Route::get('{course}/participants', 'API\CoursesController@participants');
+        Route::post('{course}/participants', 'API\CoursesController@participate');
+
+    });
+
 });
+
+
+// articles
+Route::group(['prefix' => 'articles'], function(){
+
+
+    Route::get('', 'API\ArticlesController@index');
+    Route::get('{article}', 'API\ArticlesController@show');
+
+
+    Route::middleware('auth:api')->group(function (){
+        Route::post('', 'API\ArticlesController@store');
+        Route::put('{article}', 'API\ArticlesController@update');
+        Route::delete('{article}', 'API\ArticlesController@destroy');
+
+    });
+});
+
+// deadlines
+Route::group(['prefix' => 'deadlines'], function(){
+
+
+    Route::get('', 'API\DeadlinesController@index');
+    Route::get('{deadline}', 'API\DeadlinesController@show');
+
+
+
+    Route::middleware('auth:api')->group(function (){
+        Route::put('{deadline}', 'API\DeadlinesController@update');
+        Route::delete('{deadline}', 'API\DeadlinesController@destroy');
+        Route::post('', 'API\DeadlinesController@store');
+    });
+});
+
