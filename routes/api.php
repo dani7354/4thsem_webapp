@@ -48,7 +48,6 @@ Route::group(['prefix' => 'articles'], function(){
     Route::get('', 'API\ArticlesController@index');
     Route::get('{article}', 'API\ArticlesController@show');
 
-
     Route::middleware('auth:api')->group(function (){
         Route::post('', 'API\ArticlesController@store');
         Route::put('{article}', 'API\ArticlesController@update');
@@ -64,8 +63,6 @@ Route::group(['prefix' => 'deadlines'], function(){
     Route::get('', 'API\DeadlinesController@index');
     Route::get('{deadline}', 'API\DeadlinesController@show');
 
-
-
     Route::middleware('auth:api')->group(function (){
         Route::put('{deadline}', 'API\DeadlinesController@update');
         Route::delete('{deadline}', 'API\DeadlinesController@destroy');
@@ -73,3 +70,9 @@ Route::group(['prefix' => 'deadlines'], function(){
     });
 });
 
+// tokens
+Route::middleware('auth:api')->group(function () {
+    Route::get('token', 'API\ApiTokenController@show');
+    Route::get('token/new', 'API\ApiTokenController@update');
+
+});

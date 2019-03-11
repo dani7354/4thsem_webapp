@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
 
 
 class RegisterController extends Controller
@@ -65,11 +66,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        $user = User::create(array(
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            'api_token' => Str::random(60),
+        ));
         $user
             ->roles()
             ->attach(Role::where('name', 'employee')->first());
