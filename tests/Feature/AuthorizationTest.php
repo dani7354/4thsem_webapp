@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Course;
 use App\Role;
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -31,6 +32,7 @@ class AuthorizationTest extends TestCase
 
         parent::__construct($name, $data, $dataName);
     }
+
 
     private function addTokenAuth($header="")
     {
