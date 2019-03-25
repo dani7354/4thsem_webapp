@@ -35,6 +35,7 @@ Route::group(['prefix' => 'courses'], function(){
 
         Route::get('{course}/participants', 'API\CoursesController@participants');
         Route::post('{course}/participants', 'API\CoursesController@participate');
+        Route::delete('{course}/participants', 'API\CoursesController@cancel');
 
     });
 

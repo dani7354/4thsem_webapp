@@ -141,10 +141,8 @@ class CoursesController extends Controller
                 return response()->json("The employeee is already signed up for the course", 400);
             }
 
-
-
             try {
-                $course->participants()->attach(User::where('email', $request['email'])->first()->id);
+                $course->participants()->attach($participant);
             } catch (Exception $exception) {
                 return response()->json($exception->getMessage(), 400);
             }
@@ -153,5 +151,33 @@ class CoursesController extends Controller
         else{
             return response()->json(null, 403);
         }
+    }
+
+    public function cancel(Request $request, Course $course){
+
+
+        $current_user = User::find(Auth::user()->id);
+
+        if($current_user->hasRole('Employee')){
+            $participant = User::where('email', $request['email'])->first();
+
+            if(!$participant){
+                return response()->json("Employee not found", 404);
+            }
+            else if(!$course->participants()->exists($participant)){
+                return response()->json("The employee is not signed up for the course", 400);
+            }
+            try {
+                $course->participants()->detach($participant);
+            } catch (Exception $exception) {
+                return response()->json($exception->getMessage(), 400);
+            }
+            return response()->json(null, 200);
+        }
+        else{
+            return response()->json(null, 403);
+        }
+
+
     }
 }
