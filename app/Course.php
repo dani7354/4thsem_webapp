@@ -24,6 +24,7 @@ class Course extends Model
     public static $validation_rules = array(
         'name' => 'required',
         'description' => 'required',
+        'location' => 'required',
         'start' =>'required',
         'end' => 'required',
 

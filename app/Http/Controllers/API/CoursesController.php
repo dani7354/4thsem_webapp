@@ -128,12 +128,23 @@ class CoursesController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function participate(Request $request, Course $course){
-        // TODO: should be the authenticated user
+
+        //TODO: find some more relevant status codes for the responses
+
         $current_user = User::find(Auth::user()->id);
         if($current_user->hasRole('Employee')) {
+            $participant = User::where('email', $request['email'])->first();
+            if(!$participant){
+                return response()->json("Employee not found", 404);
+            }
+            else if($course->participants()->exists($participant)){
+                return response()->json("The employeee is already signed up for the course", 400);
+            }
+
+
 
             try {
-                $course->participants()->attach(Auth::user()->id);
+                $course->participants()->attach(User::where('email', $request['email'])->first()->id);
             } catch (Exception $exception) {
                 return response()->json($exception->getMessage(), 400);
             }
