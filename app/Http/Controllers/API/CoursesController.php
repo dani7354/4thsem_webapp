@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Validator;
 class CoursesController extends Controller
 {
 
+    private $course;
+    // constructor injection
+    public function __construct(Course $course) {
 
+        $this->course = $course;
+    }
 
 
     /**
@@ -26,7 +31,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        return response()->json(Course::get(), 200);
+        return response()->json($this->course->all(), 200);
     }
 
     /**

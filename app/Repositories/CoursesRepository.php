@@ -7,7 +7,7 @@
  */
 
 namespace App\Repositories;
-
+use App\Course;
 use App\Repositories\Eloquent\Repository;
 
 
@@ -16,7 +16,7 @@ class CoursesRepository extends Repository
 
     function model()
     {
-        return 'App\Course';
+        return new Course();
     }
 
 

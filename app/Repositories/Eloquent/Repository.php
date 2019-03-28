@@ -29,7 +29,7 @@ class Repository implements RepositoryInterface
     }
 
     public function makeModel() {
-        $model = $this->app->make($this->model());
+        $model = $this->model();
 
         if (!$model instanceof Model)
             throw new Exception("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
