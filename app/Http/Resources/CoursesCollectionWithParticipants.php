@@ -14,6 +14,14 @@ class CoursesCollectionWithParticipants extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            /*  'host' => new User($this->host), */
+            'location' => $this->location,
+            'start' => $this->start,
+            'end' => $this->end,
+            'participants' => UserCollection::collection($this->participants),
+        ];
     }
 }

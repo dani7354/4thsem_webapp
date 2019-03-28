@@ -19,7 +19,7 @@ class Course extends Model
         return $this->belongsToMany('App\User', 'user_course', 'course_id', 'user_id');
     }
     public function host(){
-       return $this->belongsTo(User::class);
+       return $this->belongsTo(User::class, 'user_id');
     }
     public static $validation_rules = array(
         'name' => 'required',

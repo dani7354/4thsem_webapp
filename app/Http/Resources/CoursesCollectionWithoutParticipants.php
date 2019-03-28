@@ -17,11 +17,11 @@ class CoursesCollectionWithoutParticipants extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'host' => new User($this->host),
-            'location' = $this->location,
+          /*  'host' => new User($this->host), */
+            'location' => $this->location,
             'start' => $this->start,
             'end' => $this->end,
-            'participants' =>
+            'participants' => UserCollection::collection($this->participants()),
         ];
 
 

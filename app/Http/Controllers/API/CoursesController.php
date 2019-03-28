@@ -6,6 +6,7 @@ use App\Course;
 use App\Repositories\CoursesRepository as Courses;
 use Exception;
 use App\User;
+use App\Http\Resources;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,8 +23,6 @@ class CoursesController extends Controller
 
         $this->courses = $course;
     }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -73,8 +72,7 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = $this->courses->find($id);
-        return is_null($course) ? response()->json(null, 404) : response($course, 200);
-
+        return is_null($course) ? response()->json(null, 404) : response()->json($course, 200);
     }
 
     /**
