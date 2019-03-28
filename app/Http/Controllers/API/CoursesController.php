@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-//use App\Course;
-use App\Repositories\CoursesRepository as Course;
+use App\Course;
+use App\Repositories\CoursesRepository as Courses;
 use Exception;
 use App\User;
 use http\Env\Response;
@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Validator;
 class CoursesController extends Controller
 {
 
-    private $course;
+    private $courses;
     // constructor injection
-    public function __construct(Course $course) {
+    public function __construct(Courses $course) {
 
-        $this->course = $course;
+        $this->courses = $course;
     }
 
 
@@ -31,7 +31,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        return response()->json($this->course->all(), 200);
+        return response()->json($this->courses->all(), 200);
     }
 
     /**
@@ -49,7 +49,7 @@ class CoursesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $course = Course::create(
+            $course = $this->courses->create(
                 [
                     'name' => $request['name'],
                     'description' => $request['description'],
@@ -72,7 +72,7 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id);
+        $course = $this->courses->find($id);
         return is_null($course) ? response()->json(null, 404) : response($course, 200);
 
     }
@@ -92,7 +92,7 @@ class CoursesController extends Controller
             if($validator->fails()){
                 return response()->json($validator->errors(), 400);
             }
-            $course->update($request->all());
+            $this->courses->update($request['id'], $request->all());
             return response()->json($course, 200);
         }
         else{
@@ -112,11 +112,11 @@ class CoursesController extends Controller
     {
         $current_user = User::find(Auth::user()->id);
         if($current_user->hasRole('Admin')) {
-            $course = Course::find($id);
+            $course = $this->courses->find($id);
             if (is_null($course)) {
                 return response()->json(null, 404);
             }
-            $course->delete();
+            $this->courses->delete($id);
             return response()->json(null, 204);
         }
         else {
@@ -132,7 +132,7 @@ class CoursesController extends Controller
 
     /**
      * @param Request $request
-     * @param Course $course
+     * @param Courses $course
      * @return \Illuminate\Http\JsonResponse
      */
     public function participate(Request $request, Course $course){

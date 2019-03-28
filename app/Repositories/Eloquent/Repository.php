@@ -59,7 +59,7 @@ class Repository implements RepositoryInterface
 
     function find($id, $columns = array('*'))
     {
-        $this->model->find($id, $columns);
+        return $this->model->find($id, $columns);
     }
 
     function findBy($attribute, $value, $columns = array('*'))
