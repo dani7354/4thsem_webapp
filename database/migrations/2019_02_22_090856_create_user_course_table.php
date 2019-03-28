@@ -18,8 +18,8 @@ class CreateUserCourseTable extends Migration
             $table->integer('user_id')->unsigned();
 
             $table->primary(['user_id', 'course_id']);
-            $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

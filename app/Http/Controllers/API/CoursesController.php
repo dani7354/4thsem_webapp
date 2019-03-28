@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Course;
+//use App\Course;
+use App\Repositories\CoursesRepository as Course;
 use Exception;
 use App\User;
 use http\Env\Response;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 
 class CoursesController extends Controller
 {
+
+
 
 
     /**
@@ -132,13 +135,13 @@ class CoursesController extends Controller
         //TODO: find some more relevant status codes for the responses
 
         $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Employee')) {
+        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
             $participant = User::where('email', $request['email'])->first();
             if(!$participant){
-                return response()->json("Employee not found", 404);
+                return response()->json(["message" => "Employee not found"], 404);
             }
-            else if($course->participants()->exists($participant)){
-                return response()->json("The employeee is already signed up for the course", 400);
+            else if($course->participants()->where('id', '=', $participant->id)->exists()){
+                return response()->json(["message" => "The employeee is already signed up for the course"], 400);
             }
 
             try {
@@ -146,10 +149,10 @@ class CoursesController extends Controller
             } catch (Exception $exception) {
                 return response()->json($exception->getMessage(), 400);
             }
-            return response()->json(null, 200);
+            return response()->json(['message' => 'Success'], 200);
         }
         else{
-            return response()->json(null, 403);
+            return response()->json(['message' => 'Forbidden'], 403);
         }
     }
 
@@ -158,24 +161,24 @@ class CoursesController extends Controller
 
         $current_user = User::find(Auth::user()->id);
 
-        if($current_user->hasRole('Employee')){
+        if($current_user->hasAnyRole(['Employee', 'Admin'])){
             $participant = User::where('email', $request['email'])->first();
 
             if(!$participant){
-                return response()->json("Employee not found", 404);
+                return response()->json(['message' => 'Employee not found'], 404);
             }
-            else if(!$course->participants()->exists($participant)){
-                return response()->json("The employee is not signed up for the course", 400);
+            else if(!$course->participants()->where('id', '=', $participant->id)->exists()){
+                return response()->json(['message' => 'The employee is not signed up for the course'], 400);
             }
             try {
-                $course->participants()->detach($participant);
+                $course->participants()->detach($participant->id);
             } catch (Exception $exception) {
                 return response()->json($exception->getMessage(), 400);
             }
-            return response()->json(null, 200);
+            return response()->json(['message' => 'Cancel completed'], 200);
         }
         else{
-            return response()->json(null, 403);
+            return response()->json(['message' => 'Forbidden'], 403);
         }
 
 
