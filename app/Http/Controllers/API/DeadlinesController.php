@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Deadline;
 use App\User;
+use App\Repositories\DeadlinesRepository as DeadlinesRepo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,14 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class DeadlinesController extends Controller
 {
+
+
+    public function __construct(DeadlinesRepo $deadlines)
+    {
+        $this->deadlines_repo = $deadlines;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +29,8 @@ class DeadlinesController extends Controller
      */
     public function index()
     {
-        $deadlines = Deadline::get();
-        return response()->json($deadlines, 200);
+
+        return response()->json($this->deadlines_repo->all(), 200);
     }
 
     /**
@@ -38,7 +47,7 @@ class DeadlinesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $deadline = Deadline::create($request->all());
+            $deadline = $this->deadlines_repo->create($request->all());
             return response()->json($deadline, 201);
         }
         else{
@@ -54,7 +63,7 @@ class DeadlinesController extends Controller
      */
     public function show($id)
     {
-        $deadline = Deadline::find($id);
+        $deadline = $this->deadlines_repo->find($id);
         return is_null($deadline) ? response()->json(null, 404) : response()->json($deadline, 200);
     }
 
@@ -74,7 +83,7 @@ class DeadlinesController extends Controller
                 return response()->json($validator->errors(), 400);
             }
 
-            $deadline->update($request->all());
+            $this->deadlines_repo->update($request['id'], $request->all());
             return response()->json($deadline, 200);
         }
         else{
@@ -96,7 +105,7 @@ class DeadlinesController extends Controller
             if (is_null($deadline)) {
                 return response()->json(null, 404);
             }
-            $deadline->delete();
+            $this->deadlines_repo->delete($id);
             return response()->json(null, 204);
         }
         else{

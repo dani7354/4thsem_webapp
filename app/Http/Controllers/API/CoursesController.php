@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Course;
-use App\Repositories\CoursesRepository as Courses;
+use App\Repositories\CoursesRepository as CoursesRepo;
 use Exception;
 use App\User;
 use App\Http\Resources;
@@ -19,7 +19,7 @@ class CoursesController extends Controller
 
     private $courses;
     // constructor injection
-    public function __construct(Courses $course) {
+    public function __construct(CoursesRepo $course) {
 
         $this->courses = $course;
     }
@@ -130,7 +130,7 @@ class CoursesController extends Controller
 
     /**
      * @param Request $request
-     * @param Courses $course
+     * @param CoursesRepo $course
      * @return \Illuminate\Http\JsonResponse
      */
     public function participate(Request $request, Course $course){
