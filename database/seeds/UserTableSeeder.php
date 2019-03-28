@@ -3,6 +3,7 @@
 use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -46,8 +47,35 @@ class UserTableSeeder extends Seeder
         $manager = new User();
         $manager->name = 'Kuddi';
         $manager->email = 'kuddi@mail.com';
-        $manager->password = bcrypt('kuddi123');
+        $manager->password = bcrypt('password123');
         $manager->api_token = "c9Yo4FDNVxRwqg5bEe7kG62oAPWv59RohVkpjHZggXqFSNy9RhK75oAZjk2F";
+        $manager->save();
+        $manager->roles()->attach($role_manager);
+        $manager->roles()->attach($role_employee);
+
+        $manager = new User();
+        $manager->name = 'Asger';
+        $manager->email = 'asger@mail.com';
+        $manager->password = bcrypt('password123');
+        $manager->api_token =Str::random(60);
+        $manager->save();
+        $manager->roles()->attach($role_manager);
+        $manager->roles()->attach($role_employee);
+
+        $manager = new User();
+        $manager->name = 'Frederik';
+        $manager->email = 'frederik@mail.com';
+        $manager->password = bcrypt('password123');
+        $manager->api_token =Str::random(60);
+        $manager->save();
+        $manager->roles()->attach($role_manager);
+        $manager->roles()->attach($role_employee);
+
+        $manager = new User();
+        $manager->name = 'Andreas';
+        $manager->email = 'andreas@mail.com';
+        $manager->password = bcrypt('password123');
+        $manager->api_token =Str::random(60);
         $manager->save();
         $manager->roles()->attach($role_manager);
         $manager->roles()->attach($role_employee);

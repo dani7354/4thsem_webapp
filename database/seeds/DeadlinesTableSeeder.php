@@ -13,22 +13,57 @@ class DeadlinesTableSeeder extends Seeder
     public function run()
     {
         $d1 = new Deadline();
-        $d1->name = "Et regnskab skal laves";
-        $d1->description = "Det skal laves ordentligt";
-        $d1->date = "2019-04-10T08:00";
-        $d1->save();
-
-
-        $d1 = new Deadline();
-        $d1->name = "Der skal være rengjort i køkkenet";
-        $d1->description = "Det skal laves ordentligt";
-        $d1->date = "2019-04-11T08:00";
+        $d1->name = "Deadline 1";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(1);
         $d1->save();
 
         $d1 = new Deadline();
-        $d1->name = "En anden deadline";
-        $d1->description = "jaja";
-        $d1->date = "2019-10-11T10:00";
+        $d1->name = "Deadline 2";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(10);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 3";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(100);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 4";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(7);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 5";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(16);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 6";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(100);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 7";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(15);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 8";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(365);
+        $d1->save();
+
+        $d1 = new Deadline();
+        $d1->name = "Deadline 9";
+        $d1->description = "Beskrivelse";
+        $d1->date = now()->addDay(120);
         $d1->save();
 
     }

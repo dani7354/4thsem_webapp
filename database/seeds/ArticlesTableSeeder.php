@@ -13,25 +13,81 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         $a1 = new Article();
-        $a1->title = "Danrevi har fået en ny medlemsvirksomhed";
-        $a1->content = "I dag har Danrevi optaget et nyt medlem....";
-        $a1->user_id = 1;
-        $a1->tags = "#welcome#danrevi";
+        $a1->title = "Artikel 1";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
         $a1 = new Article();
-        $a1->title = "Danrevi fik fejret 10 års fødselsdag med bajere og kage til alle ansatte";
-        $a1->content = "I torsdags kunne Danrevi fejre rund fødselsdag...";
-        $a1->user_id = 1;
-        $a1->tags = "#welcome#danrevi#birthday";
+        $a1->title = "Artikel 2";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
         $a1 = new Article();
-        $a1->title = "Et eller andet";
-        $a1->content = "Hej";
-        $a1->user_id = 1;
+        $a1->title = "Artikel 3";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 4";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 5";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 6";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 7";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 8";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 9";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
+        $a1->tags = "";
+        $a1->date_created = now();
+        $a1->save();
+
+        $a1 = new Article();
+        $a1->title = "Artikel 10";
+        $a1->content = "Indhold.....";
+        $a1->user_id = 3;
         $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
