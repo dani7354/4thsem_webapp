@@ -17,5 +17,19 @@ class ArticlesRepository extends Repository
     {
         return new Article();
     }
+    public function create(array $data)
+    {
+        $article = new Article();
+        $article->title = $data['title'];
+        $article->content = $data['content'];
+        $article->tags = $data['tags'];
+        $article->date_created = now();
+        $article->user_id = $data['user_id'];
+        return $article->save();
+
+
+
+    }
+
 
 }

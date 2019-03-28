@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Article;
 use App\User;
+use App\Repositories\ArticlesRepository as ArticlesRepo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +13,12 @@ use App\Course;
 
 class ArticlesController extends Controller
 {
+
+    public function __construct(ArticlesRepo $articles)
+    {
+        $this->articles_repo = $articles;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return response()->json(Article::get(), 200);
+        return response()->json($this->articles_repo->all(), 200);
     }
 
     /**
@@ -37,15 +44,10 @@ class ArticlesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $article = new Article();
-            $article->title = $request['title'];
-            $article->content = $request['content'];
-            $article->tags = $request['tags'];
-            $article->date_created = now();
-            $article->user_id = 1; //TODO: change this shit!
-            $article->save();
+            $request['user_id'] = $current_user->id;
+            $this->articles_repo->create($request->all());
 
-            return response()->json($article, 201);
+            return response()->json(null, 201);
         }
         else{
             return response()->json(null, 403);
@@ -60,7 +62,7 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
+        $article = $this->articles_repo->find($id);
         return is_null($article) ? response()->json(null, 404) : response($article, 200);
 
     }
@@ -80,7 +82,7 @@ class ArticlesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $article->update($request->all());
+            $this->articles_repo->update($request['id'], $request->all());
             return response()->json($article, 200);
         }
         else{
@@ -99,11 +101,11 @@ class ArticlesController extends Controller
     {
         $current_user = User::find(Auth::user()->id);
         if($current_user->hasRole('Admin')) {
-            $article = Article::find($id);
+            $article = $this->articles_repo->find($id);
             if (is_null($article)) {
                 return response()->json(null, 404);
             }
-            $article->delete();
+            $this->articles_repo->delete($id);
             return response()->json(null, 204);
         }
         else{
@@ -111,10 +113,10 @@ class ArticlesController extends Controller
         }
     }
 
-    public function get_by_tag($tag)
+   /* public function get_by_tag($tag)
     {
         $articles = Article::where('tags', 'LIKE', '%' . $tag . '%')->get();
         return response()->json($articles, 200);
 
-    }
+    }*/
 }
