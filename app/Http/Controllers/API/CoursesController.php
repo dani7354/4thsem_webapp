@@ -7,7 +7,9 @@ use App\Repositories\CoursesRepository as CoursesRepo;
 use Exception;
 use App\User;
 use App\Http\Resources;
+use App\Http\Resources\Course as CourseResource;
 use http\Env\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +38,7 @@ class CoursesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -71,14 +73,14 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        $course = $this->courses->find($id);
-        return is_null($course) ? response()->json(null, 404) : response()->json($course, 200);
+        $course = $this->courses->findWithParticipants($id);
+        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
@@ -130,8 +132,8 @@ class CoursesController extends Controller
 
     /**
      * @param Request $request
-     * @param CoursesRepo $course
-     * @return \Illuminate\Http\JsonResponse
+     * @param Course $course
+     * @return JsonResponse
      */
     public function participate(Request $request, Course $course){
 

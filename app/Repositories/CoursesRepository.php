@@ -19,5 +19,9 @@ class CoursesRepository extends Repository
         return new Course();
     }
 
+    function findWithParticipants($id){
+        return Course::with('participants')->find($id);
+    }
+
 
 }

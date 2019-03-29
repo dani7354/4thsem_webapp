@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CoursesCollectionWithoutParticipants extends JsonResource
+class Course extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,18 +14,15 @@ class CoursesCollectionWithoutParticipants extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        return array(
             'id' => $this->id,
             'name' => $this->name,
-          /*  'host' => new User($this->host), */
-            'location' => $this->location,
+            'description' => $this->description,
+            'location' => $this ->location,
             'start' => $this->start,
             'end' => $this->end,
-            'participants' => UserCollection::collection($this->participants()),
-        ];
+            'participants' =>  $this->participants,
 
-
-
-
+        );
     }
 }
