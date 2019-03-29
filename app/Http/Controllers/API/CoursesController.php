@@ -73,8 +73,8 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        $course = $this->courses->findWithParticipants($id);
-        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
+        $course = $this->courses->find($id);
+        return is_null($course) ? response()->json(null, 404) : response()->json($course, 200);
     }
 
     /**
@@ -125,9 +125,8 @@ class CoursesController extends Controller
     }
 
     public function participants(Request $request, Course $course){
-        $participants = $course->participants()->get();
-
-        return response()->json($participants, 200);
+        $course = $this->courses->findWithParticipants($course->id);
+        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
     }
 
     /**
