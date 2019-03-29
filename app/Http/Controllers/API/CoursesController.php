@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Course;
-use App\Repositories\CoursesRepository as CoursesRepo;
-use Exception;
-use App\User;
-use App\Http\Resources;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Course as CourseResource;
-use http\Env\Response;
+use App\Http\Resources\CourseWithParticipants as CourseWithParticipantsResource;
+use App\Repositories\CoursesRepository as CoursesRepo;
+use App\User;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -74,14 +73,14 @@ class CoursesController extends Controller
     public function show($id)
     {
         $course = $this->courses->find($id);
-        return is_null($course) ? response()->json(null, 404) : response()->json($course, 200);
+        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \App\Course  $course
+     * @param Course $course
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Course $course)
@@ -126,7 +125,7 @@ class CoursesController extends Controller
 
     public function participants(Request $request, Course $course){
         $course = $this->courses->findWithParticipants($course->id);
-        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
+        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseWithParticipantsResource($course), 200);
     }
 
     /**
