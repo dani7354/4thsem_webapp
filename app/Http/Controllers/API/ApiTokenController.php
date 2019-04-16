@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -12,7 +13,7 @@ class ApiTokenController extends Controller
 {
 
     /**
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show()
     {
@@ -21,10 +22,26 @@ class ApiTokenController extends Controller
         return response()->json(['token' => $token]);
     }
 
+    public function login(Request $request)
+    {
+        $login_successful = Auth::attempt(
+            [
+                "email" => $request["email"],
+                "password" => $request["password"],
+            ]
+        );
+        if ($login_successful) {
+            return response()->json(["token" => User::where('email', $request['email'])->first()->api_token], 200);
+
+        }
+        return response()->json("Unauthorized", 401);
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)

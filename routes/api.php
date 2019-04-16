@@ -77,3 +77,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('token/new', 'API\ApiTokenController@update');
 
 });
+
+Route::post('login', 'API\APITokenController@login');

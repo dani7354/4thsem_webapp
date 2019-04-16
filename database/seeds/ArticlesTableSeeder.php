@@ -16,7 +16,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 1";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -24,7 +23,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 2";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -32,7 +30,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 3";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -40,7 +37,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 4";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -48,7 +44,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 5";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -56,7 +51,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 6";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -64,7 +58,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 7";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -72,7 +65,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 8";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -80,7 +72,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 9";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
 
@@ -88,7 +79,6 @@ class ArticlesTableSeeder extends Seeder
         $a1->title = "Artikel 10";
         $a1->content = "Indhold.....";
         $a1->user_id = 3;
-        $a1->tags = "";
         $a1->date_created = now();
         $a1->save();
     }

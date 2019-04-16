@@ -7,8 +7,8 @@
  */
 
 namespace App\Repositories;
-use App\Repositories\Eloquent\Repository;
 use App\Article;
+use App\Repositories\Eloquent\Repository;
 
 
 class ArticlesRepository extends Repository
@@ -22,7 +22,6 @@ class ArticlesRepository extends Repository
         $article = new Article();
         $article->title = $data['title'];
         $article->content = $data['content'];
-        $article->tags = $data['tags'];
         $article->date_created = now();
         $article->user_id = $data['user_id'];
         return $article->save();

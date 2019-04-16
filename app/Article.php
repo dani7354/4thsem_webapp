@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'article_tag');
+    }
+
     protected $hidden = [
         'created_at', 'updated_at'
     ];

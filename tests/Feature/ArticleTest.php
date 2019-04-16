@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Article;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ArticleTest extends TestCase
 {
@@ -101,7 +99,6 @@ class ArticleTest extends TestCase
         $body = array(
             'title' => 'Ja mojn do',
             'content' => '...Nu skal hun nemlig på efterløn',
-            'tags' => '#tag',
             'user_id' => 1
 
         );
