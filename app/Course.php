@@ -12,21 +12,21 @@ class Course extends Model
      'created_at', 'updated_at'
    ];
     protected $fillable = [
-        'name', 'description', 'start', 'end', 'user_id', 'location'
+        'name', 'description', 'start', 'end', 'target_audience', 'host', 'location'
     ];
     public function participants()
     {
         return $this->belongsToMany('App\User', 'user_course', 'course_id', 'user_id');
     }
-    public function host(){
-       return $this->belongsTo(User::class, 'user_id');
-    }
+
     public static $validation_rules = array(
         'name' => 'required',
         'description' => 'required',
         'location' => 'required',
         'start' =>'required',
         'end' => 'required',
+        'target_audience' => 'required',
+        'host' => 'required'
 
     );
 

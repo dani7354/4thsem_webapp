@@ -56,7 +56,8 @@ class CoursesController extends Controller
                     'start' => $request['start'],
                     'end' => $request['end'],
                     'location' => $request['location'],
-                    'user_id' => Auth::user()->id,
+                    'host' => $request['host'],
+                    'target_audience' => $request['target_audience']
                 ]);
             return response()->json($course, 201);
         }else{

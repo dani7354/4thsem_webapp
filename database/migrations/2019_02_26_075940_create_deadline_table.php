@@ -19,6 +19,8 @@ class CreateDeadlineTable extends Migration
             $table->mediumText('description');
             $table->dateTime('date');
             $table->timestamps();
+
+            $table->index('date');
         });
     }
 

@@ -21,7 +21,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(10)->addHours(10);
         $course->end = now()->addDay(10)->addHours(12);
         $course->location = "Kontor 2";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(4);
         $course->participants()->attach(6);
@@ -32,7 +33,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(16)->addHours(10);
         $course->end = $course->start->addHours(8);
         $course->location = "Kontor 1";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(2);
@@ -47,7 +49,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(8)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 1";
-        $course->user_id = 5;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(2);
@@ -62,7 +65,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(80)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 1";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(2);
@@ -76,7 +80,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(19)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 1";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
 
 
@@ -86,7 +91,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(19)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 2";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
 
@@ -97,7 +103,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(25)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 1";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(4);
         $course->participants()->attach(5);
@@ -109,7 +116,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(100)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 1";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(2);
@@ -122,7 +130,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(91)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 5";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(2);
@@ -136,7 +145,8 @@ class CourseTableSeeder extends Seeder
         $course->start = now()->addDay(41)->addHours(8);
         $course->end = $course->start->addHours(10);
         $course->location = "Kontor 5";
-        $course->user_id = 4;
+        $course->host = "Jens Ringgaard";
+        $course->target_audience = "Alle revisorer";
         $course->save();
         $course->participants()->attach(1);
         $course->participants()->attach(5);
