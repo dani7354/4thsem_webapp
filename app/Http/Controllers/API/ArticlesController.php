@@ -94,9 +94,9 @@ class ArticlesController extends Controller
             }
             $article->title = $request['title'];
             $article->content = $request['content'];
-            $article->save();
-
             $this->update_tags($request['tags'], $article);
+
+
             return response()->json($article, 200);
         }
         else{
@@ -142,8 +142,8 @@ class ArticlesController extends Controller
     private function update_tags(string $tags, Article $article)
     {
         $tags_arr = $this->split_tags_to_array($tags);
-        $this->remove_tags($tags_arr, $article);
         $this->save_tags($tags_arr, $article);
+        $this->remove_tags($tags_arr, $article);
 
     }
 
@@ -165,8 +165,9 @@ class ArticlesController extends Controller
 
     private function remove_tags(array $tags, Article $article)
     {
-        foreach ($article->tags() as $tag) {
-            if (!in_array($tag, $tags)) {
+        $db_tags = $article->tags()->get();
+        foreach ($db_tags as $tag) {
+            if (!in_array(trim($tag->tag), $tags)) {
                 $article->tags()->detach($tag->id);
             }
         }
