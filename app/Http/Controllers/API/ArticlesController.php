@@ -139,8 +139,9 @@ class ArticlesController extends Controller
 
     }
 
-    private function update_tags(string $tags, Article $article)
+    private function update_tags($tags, Article $article)
     {
+        $tags = $tags ?? ""; // if the request has no tags.
         $tags_arr = $this->split_tags_to_array($tags);
         $this->save_tags($tags_arr, $article);
         $this->remove_tags($tags_arr, $article);
