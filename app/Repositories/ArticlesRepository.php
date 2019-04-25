@@ -24,7 +24,8 @@ class ArticlesRepository extends Repository
         $article->content = $data['content'];
         $article->date_created = now();
         $article->user_id = $data['user_id'];
-        return $article->save();
+        $article->save();
+        return $article;
 
 
 

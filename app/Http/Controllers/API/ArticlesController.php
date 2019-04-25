@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Article;
-use App\User;
-use App\Repositories\ArticlesRepository as ArticlesRepo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Article as ArticleResource;
+use App\Repositories\ArticlesRepository as ArticlesRepo;
+use App\Tag;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Course;
 
 class ArticlesController extends Controller
 {
@@ -22,7 +24,7 @@ class ArticlesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -32,8 +34,8 @@ class ArticlesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -45,7 +47,11 @@ class ArticlesController extends Controller
                 return response()->json($validator->errors(), 400);
             }
             $request['user_id'] = $current_user->id;
-            $this->articles_repo->create($request->all());
+            $article = $this->articles_repo->create($request->all());
+
+            $this->save_tags($request['tags'], $article);
+
+
 
             return response()->json(null, 201);
         }
@@ -54,25 +60,41 @@ class ArticlesController extends Controller
         }
     }
 
+    private function save_tags(string $tags, Article $article)
+    {
+        $tags_arr = explode('#', $tags);
+
+        foreach ($tags_arr as $tag) {
+            $found_tag = Tag::where('tag', strtolower($tag))->first();
+            if (is_null($found_tag)) {
+                $found_tag = Tag::create(['tag' => $tag]);
+                $found_tag->save();
+            }
+
+            $article->tags()->attach($found_tag->id);
+
+        }
+    }
+
     /**
      * Display the specified resource.
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
         $article = $this->articles_repo->find($id);
-        return is_null($article) ? response()->json(null, 404) : response($article, 200);
+        return is_null($article) ? response()->json(null, 404) : response(new ArticleResource($article), 200);
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Article $article
+     * @return Response
      */
     public function update(Request $request, Article $article)
     {
@@ -95,7 +117,7 @@ class ArticlesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

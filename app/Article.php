@@ -16,11 +16,11 @@ class Article extends Model
         'created_at', 'updated_at'
     ];
     protected $fillable = array(
-        'title', 'content', 'tags'
+        'title', 'content'
     );
 
     public function author(){
-        $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public static  $validation_rules = array(
         'title' => 'required',
