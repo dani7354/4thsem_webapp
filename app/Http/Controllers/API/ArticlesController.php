@@ -51,7 +51,8 @@ class ArticlesController extends Controller
 
 
             if (!empty($request['tags'])) {
-                $this->save_tags($request['tags'], $article);
+
+                $this->save_tags($this->split_tags_to_array($request['tags']), $article);
             }
 
             return response()->json(null, 201);
@@ -61,22 +62,7 @@ class ArticlesController extends Controller
         }
     }
 
-    private function save_tags(string $tags, Article $article)
-    {
-        $tags_arr = explode('#', $tags);
 
-        foreach ($tags_arr as $tag) {
-            if (!empty($tag)) {
-                $found_tag = Tag::where('tag', strtolower($tag))->first();
-                if (is_null($found_tag)) {
-                    $found_tag = Tag::create(['tag' => $tag]);
-                    $found_tag->save();
-                }
-                // adds a record in the intersection table.
-                $article->tags()->attach($found_tag->id);
-            }
-        }
-    }
 
     /**
      * Display the specified resource.
@@ -106,7 +92,11 @@ class ArticlesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $this->articles_repo->update($request['id'], $request->all());
+            $article->title = $request['title'];
+            $article->content = $request['content'];
+            $article->save();
+
+            $this->update_tags($request['tags'], $article);
             return response()->json($article, 200);
         }
         else{
@@ -137,10 +127,48 @@ class ArticlesController extends Controller
         }
     }
 
-   /* public function get_by_tag($tag)
-    {
-        $articles = Article::where('tags', 'LIKE', '%' . $tag . '%')->get();
-        return response()->json($articles, 200);
+    // Helper methods for saving and updating tags
 
-    }*/
+
+    private function split_tags_to_array(string $tags)
+    {
+        $tags_arr = explode('#', $tags);
+        $tags_arr = array_map('strtolower', $tags_arr);
+        $tags_arr = array_map('trim', $tags_arr);
+        return $tags_arr;
+
+    }
+
+    private function update_tags(string $tags, Article $article)
+    {
+        $tags_arr = $this->split_tags_to_array($tags);
+        $this->remove_tags($tags_arr, $article);
+        $this->save_tags($tags_arr, $article);
+
+    }
+
+    private function save_tags(array $tags_arr, Article $article)
+    {
+
+        foreach ($tags_arr as $tag) {
+            if (!empty($tag) && !$article->tags()->where('tag', $tag)->exists()) {
+                $found_tag = Tag::where('tag', strtolower($tag))->first();
+                if (is_null($found_tag)) {
+                    $found_tag = Tag::create(['tag' => $tag]);
+                    $found_tag->save();
+                }
+                // adds a record in the intersection table.
+                $article->tags()->attach($found_tag);
+            }
+        }
+    }
+
+    private function remove_tags(array $tags, Article $article)
+    {
+        foreach ($article->tags() as $tag) {
+            if (!in_array($tag, $tags)) {
+                $article->tags()->detach($tag->id);
+            }
+        }
+    }
 }
