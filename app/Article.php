@@ -25,5 +25,6 @@ class Article extends Model
     public static  $validation_rules = array(
         'title' => 'required',
         'content' => 'required',
+
     );
 }

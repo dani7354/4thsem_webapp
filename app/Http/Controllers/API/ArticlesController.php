@@ -49,9 +49,10 @@ class ArticlesController extends Controller
             $request['user_id'] = $current_user->id;
             $article = $this->articles_repo->create($request->all());
 
-            $this->save_tags($request['tags'], $article);
 
-
+            if (!empty($request['tags'])) {
+                $this->save_tags($request['tags'], $article);
+            }
 
             return response()->json(null, 201);
         }
@@ -65,14 +66,15 @@ class ArticlesController extends Controller
         $tags_arr = explode('#', $tags);
 
         foreach ($tags_arr as $tag) {
-            $found_tag = Tag::where('tag', strtolower($tag))->first();
-            if (is_null($found_tag)) {
-                $found_tag = Tag::create(['tag' => $tag]);
-                $found_tag->save();
+            if (!empty($tag)) {
+                $found_tag = Tag::where('tag', strtolower($tag))->first();
+                if (is_null($found_tag)) {
+                    $found_tag = Tag::create(['tag' => $tag]);
+                    $found_tag->save();
+                }
+                // adds a record in the intersection table.
+                $article->tags()->attach($found_tag->id);
             }
-
-            $article->tags()->attach($found_tag->id);
-
         }
     }
 
