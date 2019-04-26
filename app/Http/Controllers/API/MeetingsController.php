@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Meeting;
 use App\Repositories\MeetingsRepository;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -41,7 +42,6 @@ class MeetingsController extends Controller
         }
         $this->meetings->create($request->all());
         return response()->json("", 201);
-
     }
 
     /**
@@ -65,7 +65,12 @@ class MeetingsController extends Controller
      */
     public function update(Request $request, Meeting $meeting)
     {
-
+        $validator = Validator::make($request->all(), Meeting::$validation_rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+        $meeting->update($request->all());
+        return response()->json($meeting, 200);
     }
 
     /**
@@ -73,9 +78,11 @@ class MeetingsController extends Controller
      *
      * @param Meeting $meeting
      * @return Response
+     * @throws Exception
      */
     public function destroy(Meeting $meeting)
     {
-        //
+        $meeting->delete();
+        return response()->json("", 204);
     }
 }
