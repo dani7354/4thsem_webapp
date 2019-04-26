@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Deadline;
-use App\User;
-use App\Repositories\DeadlinesRepository as DeadlinesRepo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\DeadlinesRepository as DeadlinesRepo;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\Types\Integer;
 
 
 class DeadlinesController extends Controller
@@ -25,19 +25,18 @@ class DeadlinesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-
         return response()->json($this->deadlines_repo->all(), 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -59,7 +58,7 @@ class DeadlinesController extends Controller
      * Display the specified resource.
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -70,9 +69,9 @@ class DeadlinesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Deadline  $deadline
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Deadline $deadline
+     * @return Response
      */
     public function update(Request $request, Deadline $deadline)
     {
@@ -95,7 +94,7 @@ class DeadlinesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
