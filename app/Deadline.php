@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deadline extends Model
 {
+
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
     protected $fillable = array(
         "name", "description", "date"
     );
