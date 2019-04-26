@@ -31,6 +31,17 @@ class ArticlesController extends Controller
         return response()->json($this->articles_repo->all(), 200);
     }
 
+    public function get_by_tag(Request $request)
+    {
+        $tag = Tag::where('tag', $request['tag'])->first();
+        if (!$tag) {
+            return response()->json("tag not found: " . $request['tag'], 404);
+        }
+        $articles = $tag->articles()->get();
+
+        return response()->json($articles, 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

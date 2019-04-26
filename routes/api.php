@@ -48,6 +48,7 @@ Route::group(['prefix' => 'articles'], function(){
 
     Route::get('', 'API\ArticlesController@index');
     Route::get('{article}', 'API\ArticlesController@show');
+    Route::get('tag/{tag}', 'API\ArticlesController@get_by_tag');
 
     Route::middleware('auth:api')->group(function (){
         Route::post('', 'API\ArticlesController@store');

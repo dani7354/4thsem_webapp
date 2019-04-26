@@ -26,10 +26,6 @@ class ArticlesRepository extends Repository
         $article->user_id = $data['user_id'];
         $article->save();
         return $article;
-
-
-
     }
-
 
 }
