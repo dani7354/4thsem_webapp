@@ -29,6 +29,7 @@ class MeetingsTableSeeder extends Seeder
         $meeting->host = "Jens Ringgaard";
         $meeting->start = now();
         $meeting->end = now()->addHours(2);
+        $meeting->save();
 
         $meeting = new Meeting();
         $meeting->name = "Møde 3";
@@ -37,5 +38,6 @@ class MeetingsTableSeeder extends Seeder
         $meeting->host = "Jens Ringgaard";
         $meeting->start = now();
         $meeting->end = now()->addHours(3);
+        $meeting->save();
     }
 }

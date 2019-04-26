@@ -14,11 +14,23 @@ class Meeting extends Model
     protected $fillable = [
         'host',
         'name',
+        'location',
         'description',
         'start',
         'end'
 
     ];
+
+
+    public static $validation_rules = array(
+        'name' => 'required',
+        'description' => 'required',
+        'host' => 'required',
+        'location' => 'required',
+        'start' => 'required',
+        'end' => 'required',
+
+    );
 
 
 }

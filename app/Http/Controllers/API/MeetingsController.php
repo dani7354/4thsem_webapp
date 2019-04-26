@@ -7,6 +7,7 @@ use App\Meeting;
 use App\Repositories\MeetingsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class MeetingsController extends Controller
 {
@@ -34,18 +35,25 @@ class MeetingsController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), Meeting::$validation_rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+        $this->meetings->create($request->all());
+        return response()->json("", 201);
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Meeting $meeting
+     * @param Meeting $id
      * @return Response
      */
-    public function show(Meeting $meeting)
+    public function show($id)
     {
-        //
+        $result = $this->meetings->find($id);
+        return is_null($result) ? response()->json("not found", 404) : response()->json($result, 200);
     }
 
     /**
@@ -57,7 +65,7 @@ class MeetingsController extends Controller
      */
     public function update(Request $request, Meeting $meeting)
     {
-        //
+
     }
 
     /**

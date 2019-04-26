@@ -79,11 +79,11 @@ Route::group(['prefix' => 'meetings'], function () {
     Route::get('', 'API\MeetingsController@index');
     Route::get('{meeting}', 'API\MeetingsController@show');
 
-    Route::middleware('auth:api')->group(function () {
+    //  Route::middleware('auth:api')->group(function () {
         Route::put('{meeting}', 'API\MeetingsController@update');
         Route::delete('{meeting}', 'API\MeetingsController@destroy');
         Route::post('', 'API\MeetingsController@store');
-    });
+    //  });
 });
 
 // tokens
