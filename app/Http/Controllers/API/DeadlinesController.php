@@ -179,10 +179,6 @@ class DeadlinesController extends Controller
      * )
      * */
 
-
-
-
-
     public function destroy($id)
     {
 //        $current_user = User::find(Auth::user()->id);

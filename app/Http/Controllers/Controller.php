@@ -19,7 +19,7 @@ class Controller extends BaseController
      * @OA\Info(
      *     description="Danrevi API",
      *     version="1.0.0",
-     *     title="Danrevi API for articles, deadlines, courses, meetings and more",
+     *     title="Danrevi API",
      *     @OA\Contact(
      *         email="dape@edu.eal.dk"
      *     )
@@ -29,13 +29,9 @@ class Controller extends BaseController
      * @OA\Tag(
      *     name="danrevi",
      *     description="danrevi api",
-     *     @OA\ExternalDocumentation(
-     *         description="",
-     *         url="http://danrevi.dk"
-     *     )
      * )
      * @OA\Server(
-     *     description="Hosted Locally",
+     *     description="",
      *     url="/api"
      * )
      * @OA\ExternalDocumentation(

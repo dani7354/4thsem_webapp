@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Danrevi API for articles, deadlines, courses, meetings and more",
+    "title": "Danrevi API",
     "description": "Danrevi API",
     "contact": {
       "email": "dape@edu.eal.dk"
@@ -11,7 +11,7 @@
   "servers": [
     {
       "url": "/api",
-      "description": "Hosted Locally"
+      "description": ""
     }
   ],
   "paths": {
@@ -38,7 +38,7 @@
         "tags": [
           "articles"
         ],
-        "summary": "new article",
+        "summary": "New article",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\ArticlesController::store",
         "requestBody": {
@@ -133,7 +133,7 @@
         "tags": [
           "articles"
         ],
-        "summary": "update article",
+        "summary": "Updates article",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\ArticlesController::update",
         "parameters": [
@@ -460,7 +460,7 @@
         "tags": [
           "courses"
         ],
-        "summary": "add participant to course",
+        "summary": "removes participant to course",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\CoursesController::cancel",
         "parameters": [
@@ -520,7 +520,7 @@
         "tags": [
           "deadlines"
         ],
-        "summary": "new deadline",
+        "summary": "New deadline",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::store",
         "requestBody": {
@@ -585,7 +585,7 @@
         "tags": [
           "deadlines"
         ],
-        "summary": "updates deadline",
+        "summary": "Updates deadline",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::update",
         "parameters": [
@@ -679,7 +679,7 @@
         "tags": [
           "meetings"
         ],
-        "summary": "new deadline",
+        "summary": "New meeting",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\MeetingsController::store",
         "requestBody": {
@@ -753,7 +753,7 @@
         "tags": [
           "meetings"
         ],
-        "summary": "update meeting",
+        "summary": "Updates meeting",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\MeetingsController::update",
         "parameters": [
@@ -837,11 +837,7 @@
   "tags": [
     {
       "name": "danrevi",
-      "description": "danrevi api",
-      "externalDocs": {
-        "description": "",
-        "url": "http://danrevi.dk"
-      }
+      "description": "danrevi api"
     }
   ],
   "externalDocs": {
