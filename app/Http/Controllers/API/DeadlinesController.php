@@ -53,7 +53,7 @@ class DeadlinesController extends Controller
      *type="object",
      *      @OA\Property(property="name", type="string"),
      *      @OA\Property(property="description", type="string"),
-     *      @OA\Property(property="date", type="datetime")
+     *      @OA\Property(property="date", type="string")
      *)
      *     ),
      *     @OA\Response(
@@ -129,7 +129,7 @@ class DeadlinesController extends Controller
      *type="object",
      *      @OA\Property(property="name", type="string"),
      *      @OA\Property(property="description", type="string"),
-     *      @OA\Property(property="date", type="datetime")
+     *      @OA\Property(property="date", type="string")
      *)
      *     ),
      *     @OA\Response(

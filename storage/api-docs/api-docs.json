@@ -1,0 +1,558 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Danrevi API for articles, deadlines, courses, meetings and more",
+    "description": "Danrevi API",
+    "contact": {
+      "email": "dape@edu.eal.dk"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "Hosted Locally"
+    }
+  ],
+  "paths": {
+    "/articles": {
+      "get": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Returns all articles",
+        "description": "All articles as JSON collection",
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "new article",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\ArticlesController::store",
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          }
+        }
+      }
+    },
+    "/articles/tag/{tag}": {
+      "get": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Finds articles by tag",
+        "operationId": "App\\Http\\Controllers\\API\\ArticlesController::get_by_tag",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "path",
+            "description": "Tag to filter by",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{id}": {
+      "get": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Finds article by id",
+        "operationId": "App\\Http\\Controllers\\API\\ArticlesController::show",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "update article",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\ArticlesController::update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "articles"
+        ],
+        "summary": "Deletes article by id",
+        "operationId": "App\\Http\\Controllers\\API\\ArticlesController::destroy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deadlines": {
+      "get": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Returns all deadlines",
+        "description": "All deadlines as JSON collection",
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "new deadline",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::store",
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          }
+        }
+      }
+    },
+    "/deadlines/{id}": {
+      "get": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Finds deadlines by id",
+        "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::show",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "update deadline",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Deletes deadline by id",
+        "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::destroy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/meetings": {
+      "get": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "Returns all meetings",
+        "description": "All meetings as JSON collection",
+        "operationId": "index",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "new deadline",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\MeetingsController::store",
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "host": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "created"
+          }
+        }
+      }
+    },
+    "/meetings/{id}": {
+      "get": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "Finds meeting by id",
+        "operationId": "App\\Http\\Controllers\\API\\MeetingsController::show",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "update meeting",
+        "description": "",
+        "operationId": "App\\Http\\Controllers\\API\\MeetingsController::update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "JSON object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "host": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  },
+                  "start": {
+                    "type": "string"
+                  },
+                  "end": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "updated"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "Deletes meeting by id",
+        "operationId": "App\\Http\\Controllers\\API\\MeetingsController::destroy",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "danrevi",
+      "description": "danrevi api",
+      "externalDocs": {
+        "description": "",
+        "url": "http://danrevi.dk"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
