@@ -27,7 +27,7 @@ Route::group(['prefix' => 'courses'], function(){
     Route::get('{course}', 'API\CoursesController@show');
 
 
-    Route::middleware('auth:api')->group(function () {
+    //   Route::middleware('auth:api')->group(function () {
 
         Route::post('', 'API\CoursesController@store');
         Route::put('{course}', 'API\CoursesController@update');
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'courses'], function(){
         Route::post('{course}/participants', 'API\CoursesController@participate');
         Route::delete('{course}/participants', 'API\CoursesController@cancel');
 
-    });
+    //  });
 
 });
 
@@ -66,11 +66,11 @@ Route::group(['prefix' => 'deadlines'], function(){
     Route::get('', 'API\DeadlinesController@index');
     Route::get('{deadline}', 'API\DeadlinesController@show');
 
-    Route::middleware('auth:api')->group(function (){
+    //  Route::middleware('auth:api')->group(function (){
         Route::put('{deadline}', 'API\DeadlinesController@update');
         Route::delete('{deadline}', 'API\DeadlinesController@destroy');
         Route::post('', 'API\DeadlinesController@store');
-    });
+    //  });
 });
 
 // meetings
