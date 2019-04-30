@@ -78,7 +78,7 @@ class ArticlesController extends Controller
      * @OA\Post(
      *     path="/articles",
      *     tags={"articles"},
-     *     summary="new article",
+     *     summary="New article",
      *     description="",
      *     @OA\RequestBody(
      *         description="JSON object",
@@ -155,7 +155,7 @@ class ArticlesController extends Controller
      * @OA\Put(
      *     path="/articles/{id}",
      *     tags={"articles"},
-     *     summary="update article",
+     *     summary="Updates article",
      *     description="",
      *     @OA\Parameter(
      *         name="id",

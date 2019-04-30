@@ -44,7 +44,7 @@ class DeadlinesController extends Controller
      * @OA\Post(
      *     path="/deadlines",
      *     tags={"deadlines"},
-     *     summary="new deadline",
+     *     summary="New deadline",
      *     description="",
      *     @OA\RequestBody(
      *         description="JSON object",
@@ -111,7 +111,7 @@ class DeadlinesController extends Controller
      * @OA\Put(
      *     path="/deadlines/{id}",
      *     tags={"deadlines"},
-     *     summary="update deadline",
+     *     summary="Updates deadline",
      *     description="",
      *     @OA\Parameter(
      *         name="id",

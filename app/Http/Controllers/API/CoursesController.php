@@ -9,9 +9,7 @@ use App\Http\Resources\CourseWithParticipants as CourseWithParticipantsResource;
 use App\Repositories\CoursesRepository as CoursesRepo;
 use App\User;
 use Exception;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -25,9 +23,20 @@ class CoursesController extends Controller
         $this->courses = $course;
     }
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/courses",
+     *     tags={"courses"},
+     *     summary="Returns all courses",
+     *     description="All courses as JSON collection",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @return \Illuminate\Http\Response
+     *          )
+     *     )
+     * )
      */
     public function index()
     {
@@ -35,15 +44,35 @@ class CoursesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *     path="/courses",
+     *     tags={"courses"},
+     *     summary="new deadline",
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="start", type="string"),
+     *      @OA\Property(property="end", type="string"),
+     *      @OA\Property(property="location", type="string"),
+     *      @OA\Property(property="host", type="string"),
+     *      @OA\Property(property="target_audience", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="created",
+     *     )
+     * )
      */
     public function store(Request $request)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Course::$validation_rules);
 
             if ($validator->fails()) {
@@ -60,17 +89,34 @@ class CoursesController extends Controller
                     'target_audience' => $request['target_audience']
                 ]);
             return response()->json($course, 201);
-        }else{
-            return response()->json(null, 403);
-        }
+//        }else{
+//            return response()->json(null, 403);
+//        }
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/courses/{id}",
+     *     summary="Finds courses by id",
+     *      tags={"courses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return \Illuminate\Http\Response
-     */
+     *          )
+     *     )
+     * )
+     * */
     public function show($id)
     {
         $course = $this->courses->find($id);
@@ -78,51 +124,120 @@ class CoursesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Course $course
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *     path="/courses/{id}",
+     *     tags={"courses"},
+     *     summary="updates course",
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="start", type="string"),
+     *      @OA\Property(property="end", type="string"),
+     *      @OA\Property(property="location", type="string"),
+     *      @OA\Property(property="host", type="string"),
+     *      @OA\Property(property="target_audience", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="updated",
+     *     )
+     * )
      */
     public function update(Request $request, Course $course)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Course::$validation_rules);
             if($validator->fails()){
                 return response()->json($validator->errors(), 400);
             }
             $this->courses->update($request['id'], $request->all());
-            return response()->json($course, 200);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+        return response()->json("", 200);
+//        }
+//        else{
+//            return response()->json(null, 403);
+//        }
 
 
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/courses/{id}",
+     *     summary="Deletes course by id",
+     *      tags={"courses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=204,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return \Illuminate\Http\Response
-     */
+     *          )
+     *     )
+     * )
+     * */
     public function destroy($id)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $course = $this->courses->find($id);
             if (is_null($course)) {
                 return response()->json(null, 404);
             }
             $this->courses->delete($id);
             return response()->json(null, 204);
-        }
-        else {
-            return response()->json(null, 403);
-        }
+//        }
+//        else {
+//            return response()->json(null, 403);
+//        }
     }
+
+    /**
+     * @OA\Get(
+     *     path="/courses/{id}/participants",
+     *     summary="Finds participants for course by id",
+     *      tags={"courses"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *
+     *          )
+     *     )
+     * )
+     * */
 
     public function participants(Request $request, Course $course){
         $course = $this->courses->findWithParticipants($course->id);
@@ -130,16 +245,41 @@ class CoursesController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Course $course
-     * @return JsonResponse
+     * @OA\Post(
+     *     path="/courses/{id}/participants",
+     *     tags={"courses"},
+     *     summary="add participant to course",
+     *     description="",
+     * @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="email", type="string")
+     *
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="created",
+     *     )
+     * )
      */
     public function participate(Request $request, Course $course){
 
         //TODO: find some more relevant status codes for the responses
 
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
             $participant = User::where('email', $request['email'])->first();
             if(!$participant){
                 return response()->json(["message" => "Employee not found"], 404);
@@ -154,18 +294,48 @@ class CoursesController extends Controller
                 return response()->json($exception->getMessage(), 400);
             }
             return response()->json(['message' => 'Success'], 200);
-        }
-        else{
-            return response()->json(['message' => 'Forbidden'], 403);
-        }
+//        }
+//        else{
+//            return response()->json(['message' => 'Forbidden'], 403);
+//        }
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/courses/{id}/participants",
+     *     tags={"courses"},
+     *     summary="removes participant to course",
+     *     description="",
+     * @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="email", type="string")
+     *  )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="created",
+     *     )
+     * )
+     */
 
     public function cancel(Request $request, Course $course){
 
 
-        $current_user = User::find(Auth::user()->id);
-
-        if($current_user->hasAnyRole(['Employee', 'Admin'])){
+//        $current_user = User::find(Auth::user()->id);
+//
+//        if($current_user->hasAnyRole(['Employee', 'Admin'])){
             $participant = User::where('email', $request['email'])->first();
 
             if(!$participant){
@@ -180,10 +350,10 @@ class CoursesController extends Controller
                 return response()->json($exception->getMessage(), 400);
             }
             return response()->json(['message' => 'Cancel completed'], 200);
-        }
-        else{
-            return response()->json(['message' => 'Forbidden'], 403);
-        }
+//        }
+//        else{
+//            return response()->json(['message' => 'Forbidden'], 403);
+//        }
 
 
     }

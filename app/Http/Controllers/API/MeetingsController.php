@@ -41,7 +41,7 @@ class MeetingsController extends Controller
      * @OA\Post(
      *     path="/meetings",
      *     tags={"meetings"},
-     *     summary="new deadline",
+     *     summary="New meeting",
      *     description="",
      *     @OA\RequestBody(
      *         description="JSON object",
@@ -109,7 +109,7 @@ class MeetingsController extends Controller
      * @OA\Put(
      *     path="/meetings/{id}",
      *     tags={"meetings"},
-     *     summary="update meeting",
+     *     summary="Updates meeting",
      *     description="",
      *     @OA\Parameter(
      *         name="id",
