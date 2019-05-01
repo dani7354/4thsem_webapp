@@ -47,7 +47,7 @@ class CoursesController extends Controller
      * @OA\Post(
      *     path="/courses",
      *     tags={"courses"},
-     *     summary="new deadline",
+     *     summary="New course",
      *     description="",
      *     @OA\RequestBody(
      *         description="JSON object",
