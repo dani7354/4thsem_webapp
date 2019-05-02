@@ -65,6 +65,7 @@ Route::group(['prefix' => 'deadlines'], function(){
 
     Route::get('', 'API\DeadlinesController@index');
     Route::get('{deadline}', 'API\DeadlinesController@show');
+    Route::get('/date/{date}', 'API\DeadlinesController@get_by_date');
 
     //  Route::middleware('auth:api')->group(function (){
         Route::put('{deadline}', 'API\DeadlinesController@update');
@@ -81,6 +82,7 @@ Route::group(['prefix' => 'meetings'], function () {
     Route::get('{meeting}', 'API\MeetingsController@show');
 
     //  Route::middleware('auth:api')->group(function () {
+    Route::get('/date/{date}', 'API\MeetingsController@get_by_date');
         Route::put('{meeting}', 'API\MeetingsController@update');
         Route::delete('{meeting}', 'API\MeetingsController@destroy');
         Route::post('', 'API\MeetingsController@store');

@@ -107,6 +107,13 @@ class DeadlinesController extends Controller
         return is_null($deadline) ? response()->json(null, 404) : response()->json($deadline, 200);
     }
 
+    public function get_by_date(Request $request)
+    {
+        $date = strtotime($request['date']);
+        $result = Deadline::whereDate('date', '=', date('Y-m-d', $date))->get();
+        return $result ? response()->json($result, 200) : response()->json(null, 404);
+    }
+
     /**
      * @OA\Put(
      *     path="/deadlines/{id}",
