@@ -15,20 +15,19 @@ class ArticleCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            $this->collection->transform(function ($article) {
-                return [
-                    'id' => $article->id,
-                    'title' => $article->title,
-                    'content' => $article->content,
-                    'date_created' => $article->date_created,
-                    'author' => $article->author,
-                    'tags' => $article->tags
-                ];
 
-            })
-
-        ];
+        $json_array = [];
+        foreach ($this->collection->all() as $article) {
+            $json_array[] = [
+                'id' => $article->id,
+                'title' => $article->title,
+                'content' => $article->content,
+                'date_created' => $article->date_created,
+                'author' => $article->author,
+                'tags' => $article->tags
+            ];
+        }
+        return $json_array;
 
     }
 }
