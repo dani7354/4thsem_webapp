@@ -24,7 +24,9 @@ class ArticleCollection extends ResourceCollection
                 'content' => $article->content,
                 'date_created' => $article->date_created,
                 'author' => $article->author,
-                'tags' => $article->tags
+                'tags' => $article->tags->transform(function ($tag) {
+                    return $tag['tag'];
+                })
             ];
         }
         return $json_array;
