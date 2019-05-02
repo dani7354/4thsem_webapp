@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Article as ArticleResource;
+use App\Http\Resources\ArticleCollection as ArticleCollectionResource;
 use App\Repositories\ArticlesRepository as ArticlesRepo;
 use App\Tag;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return response()->json($this->articles_repo->all(), 200);
+        return response()->json(new ArticleCollectionResource($this->articles_repo->all()), 200);
     }
 
     /**
@@ -70,7 +71,7 @@ class ArticlesController extends Controller
         }
         $articles = $tag->articles()->get();
 
-        return response()->json($articles, 200);
+        return response()->json(new ArticleCollectionResource($articles), 200);
     }
 
 
