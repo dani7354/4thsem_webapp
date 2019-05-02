@@ -248,7 +248,7 @@ class CoursesController extends Controller
      * @OA\Post(
      *     path="/courses/{id}/participants",
      *     tags={"courses"},
-     *     summary="add participant to course",
+     *     summary="adds participant to course",
      *     description="",
      * @OA\Parameter(
      *         name="id",
@@ -304,7 +304,7 @@ class CoursesController extends Controller
      * @OA\Delete(
      *     path="/courses/{id}/participants",
      *     tags={"courses"},
-     *     summary="removes participant to course",
+     *     summary="removes participant from course",
      *     description="",
      * @OA\Parameter(
      *         name="id",

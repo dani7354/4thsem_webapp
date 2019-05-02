@@ -81,7 +81,7 @@ class DeadlinesController extends Controller
     /**
      * @OA\Get(
      *     path="/deadlines/{id}",
-     *     summary="Finds deadlines by id",
+     *     summary="Finds deadline by id",
      *      tags={"deadlines"},
      *     @OA\Parameter(
      *         name="id",
@@ -106,6 +106,30 @@ class DeadlinesController extends Controller
         $deadline = $this->deadlines_repo->find($id);
         return is_null($deadline) ? response()->json(null, 404) : response()->json($deadline, 200);
     }
+
+    /**
+     * @OA\Get(
+     *     path="/deadlines/date/{date}",
+     *     summary="Finds deadlines by date",
+     *      tags={"deadlines"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="Date",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *
+     *          )
+     *     )
+     * )
+     * */
 
     public function get_by_date(Request $request)
     {

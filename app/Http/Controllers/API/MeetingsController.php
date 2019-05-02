@@ -104,6 +104,30 @@ class MeetingsController extends Controller
         return is_null($result) ? response()->json("not found", 404) : response()->json($result, 200);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/meetings/date/{date}",
+     *     summary="Finds meetings by date",
+     *      tags={"meetings"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="Date",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *
+     *          )
+     *     )
+     * )
+     * */
+
     public function get_by_date(Request $request)
     {
         $date = strtotime($request['date']);

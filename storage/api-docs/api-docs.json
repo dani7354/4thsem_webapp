@@ -227,7 +227,7 @@
         "tags": [
           "courses"
         ],
-        "summary": "new deadline",
+        "summary": "New course",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\CoursesController::store",
         "requestBody": {
@@ -420,7 +420,7 @@
         "tags": [
           "courses"
         ],
-        "summary": "add participant to course",
+        "summary": "adds participant to course",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\CoursesController::participate",
         "parameters": [
@@ -460,7 +460,7 @@
         "tags": [
           "courses"
         ],
-        "summary": "removes participant to course",
+        "summary": "removes participant from course",
         "description": "",
         "operationId": "App\\Http\\Controllers\\API\\CoursesController::cancel",
         "parameters": [
@@ -557,7 +557,7 @@
         "tags": [
           "deadlines"
         ],
-        "summary": "Finds deadlines by id",
+        "summary": "Finds deadline by id",
         "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::show",
         "parameters": [
           {
@@ -646,6 +646,36 @@
         ],
         "responses": {
           "204": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deadlines/date/{date}": {
+      "get": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Finds deadlines by date",
+        "operationId": "App\\Http\\Controllers\\API\\DeadlinesController::get_by_date",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
@@ -823,6 +853,36 @@
         ],
         "responses": {
           "204": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/meetings/date/{date}": {
+      "get": {
+        "tags": [
+          "meetings"
+        ],
+        "summary": "Finds meetings by date",
+        "operationId": "App\\Http\\Controllers\\API\\MeetingsController::get_by_date",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Date",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
