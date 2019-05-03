@@ -21,7 +21,9 @@ class Article extends JsonResource
             'content' => $this->content,
             'date_created' => $this->date_created,
             'author' => $this->author,
-            'tags' => $this->tags,
+            'tags' => $this->tags->transform(function ($tag) {
+                return $tag['tag'];
+            })
         );
     }
 }
