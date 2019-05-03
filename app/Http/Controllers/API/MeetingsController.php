@@ -5,9 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Meeting;
 use App\Repositories\MeetingsRepository;
-use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class MeetingsController extends Controller
@@ -19,9 +17,20 @@ class MeetingsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/meetings",
+     *     tags={"meetings"},
+     *     summary="Returns all meetings",
+     *     description="All meetings as JSON collection",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @return Response
+     *          )
+     *     )
+     * )
      */
     public function index()
     {
@@ -29,11 +38,31 @@ class MeetingsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
+     * @OA\Post(
+     *     path="/meetings",
+     *     tags={"meetings"},
+     *     summary="New meeting",
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="host", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="location", type="string"),
+     *      @OA\Property(property="start", type="string"),
+     *      @OA\Property(property="end", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="created",
+     *     )
+     * )
      */
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), Meeting::$validation_rules);
@@ -45,11 +74,30 @@ class MeetingsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/meetings/{id}",
+     *     summary="Finds meeting by id",
+     *      tags={"meetings"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param Meeting $id
-     * @return Response
-     */
+     *          )
+     *     )
+     * )
+     * */
+
+
     public function show($id)
     {
         $result = $this->meetings->find($id);
@@ -57,12 +105,73 @@ class MeetingsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Get(
+     *     path="/meetings/date/{date}",
+     *     summary="Finds meetings by date",
+     *      tags={"meetings"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="Date",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param Request $request
-     * @param Meeting $meeting
-     * @return Response
+     *          )
+     *     )
+     * )
+     * */
+
+    public function get_by_date(Request $request)
+    {
+        $date = strtotime($request['date']);
+        $result = Meeting::whereDate('start', '=', date('Y-m-d', $date))->get();
+        return $result ? response()->json($result, 200) : response()->json(null, 404);
+    }
+
+
+    /**
+     * @OA\Put(
+     *     path="/meetings/{id}",
+     *     tags={"meetings"},
+     *     summary="Updates meeting",
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *     @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="host", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="location", type="string"),
+     *      @OA\Property(property="start", type="string"),
+     *      @OA\Property(property="end", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="updated",
+     *     )
+     * )
      */
+
+
     public function update(Request $request, Meeting $meeting)
     {
         $validator = Validator::make($request->all(), Meeting::$validation_rules);
@@ -74,12 +183,30 @@ class MeetingsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/meetings/{id}",
+     *     summary="Deletes meeting by id",
+     *      tags={"meetings"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=204,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param Meeting $meeting
-     * @return Response
-     * @throws Exception
-     */
+     *          )
+     *     )
+     * )
+     * */
+
+
     public function destroy(Meeting $meeting)
     {
         $meeting->delete();

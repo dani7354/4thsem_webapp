@@ -5,12 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Article as ArticleResource;
+use App\Http\Resources\ArticleCollection as ArticleCollectionResource;
 use App\Repositories\ArticlesRepository as ArticlesRepo;
 use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ArticlesController extends Controller
@@ -22,15 +20,49 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/articles",
+     *     tags={"articles"},
+     *     summary="Returns all articles",
+     *     description="All articles as JSON collection",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @return Response
+     *          )
+     *     )
+     * )
      */
     public function index()
     {
-        return response()->json($this->articles_repo->all(), 200);
+        return response()->json(new ArticleCollectionResource($this->articles_repo->all()), 200);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/articles/tag/{tag}",
+     *     summary="Finds articles by tag",
+     *      tags={"articles"},
+     *     @OA\Parameter(
+     *         name="tag",
+     *         in="path",
+     *         description="Tag to filter by",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *
+     *          )
+     *     )
+     * )
+     * */
     public function get_by_tag(Request $request)
     {
         $tag = Tag::where('tag', $request['tag'])->first();
@@ -39,25 +71,42 @@ class ArticlesController extends Controller
         }
         $articles = $tag->articles()->get();
 
-        return response()->json($articles, 200);
+        return response()->json(new ArticleCollectionResource($articles), 200);
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
+     * @OA\Post(
+     *     path="/articles",
+     *     tags={"articles"},
+     *     summary="New article",
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="title", type="string"),
+     *      @OA\Property(property="content", type="string"),
+     *      @OA\Property(property="tags", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="created",
+     *     )
+     * )
      */
     public function store(Request $request)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+        // $current_user = User::find(Auth::user()->id);
+        //if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Article::$validation_rules);
 
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $request['user_id'] = $current_user->id;
+        $request['user_id'] = 1;
             $article = $this->articles_repo->create($request->all());
 
 
@@ -67,18 +116,35 @@ class ArticlesController extends Controller
             }
 
             return response()->json(null, 201);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+        //   }
+        //  else{
+        //      return response()->json(null, 403);
+        //  }
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/articles/{id}",
+     *     summary="Finds article by id",
+     *      tags={"articles"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return Response
-     */
+     *          )
+     *     )
+     * )
+     * */
     public function show($id)
     {
         $article = $this->articles_repo->find($id);
@@ -87,16 +153,42 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Article $article
-     * @return Response
+     * @OA\Put(
+     *     path="/articles/{id}",
+     *     tags={"articles"},
+     *     summary="Updates article",
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="title", type="string"),
+     *      @OA\Property(property="content", type="string"),
+     *      @OA\Property(property="tags", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="updated",
+     *     )
+     * )
      */
+
+
     public function update(Request $request, Article $article)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+        //   $current_user = User::find(Auth::user()->id);
+        // if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Article::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
@@ -107,33 +199,54 @@ class ArticlesController extends Controller
 
 
             return response()->json($article, 200);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+        //  }
+        // else{
+        //  return response()->json(null, 403);
+        //}
 
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/articles/{id}",
+     *     summary="Deletes article by id",
+     *      tags={"articles"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=204,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return Response
-     */
+     *          )
+     *     )
+     * )
+     * */
+
+
+
+
     public function destroy($id)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+        //   $current_user = User::find(Auth::user()->id);
+        //  if($current_user->hasRole('Admin')) {
             $article = $this->articles_repo->find($id);
             if (is_null($article)) {
                 return response()->json(null, 404);
             }
             $this->articles_repo->delete($id);
             return response()->json(null, 204);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+        //    }
+        //    else{
+        //      return response()->json(null, 403);
+        //   }
     }
 
     // Helper methods for saving and updating tags

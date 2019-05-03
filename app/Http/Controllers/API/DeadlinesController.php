@@ -5,10 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Deadline;
 use App\Http\Controllers\Controller;
 use App\Repositories\DeadlinesRepository as DeadlinesRepo;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -23,9 +20,20 @@ class DeadlinesController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/deadlines",
+     *     tags={"deadlines"},
+     *     summary="Returns all deadlines",
+     *     description="All deadlines as JSON collection",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @return Response
+     *          )
+     *     )
+     * )
      */
     public function index()
     {
@@ -33,33 +41,66 @@ class DeadlinesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
+     * @OA\Post(
+     *     path="/deadlines",
+     *     tags={"deadlines"},
+     *     summary="New deadline",
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="date", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="created",
+     *     )
+     * )
      */
     public function store(Request $request)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Deadline::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
             $deadline = $this->deadlines_repo->create($request->all());
             return response()->json($deadline, 201);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+//        }
+//        else{
+//            return response()->json(null, 403);
+//        }
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/deadlines/{id}",
+     *     summary="Finds deadline by id",
+     *      tags={"deadlines"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return Response
-     */
+     *          )
+     *     )
+     * )
+     * */
     public function show($id)
     {
         $deadline = $this->deadlines_repo->find($id);
@@ -67,48 +108,121 @@ class DeadlinesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Get(
+     *     path="/deadlines/date/{date}",
+     *     summary="Finds deadlines by date",
+     *      tags={"deadlines"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="Date",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param Request $request
-     * @param Deadline $deadline
-     * @return Response
+     *          )
+     *     )
+     * )
+     * */
+
+    public function get_by_date(Request $request)
+    {
+        $date = strtotime($request['date']);
+        $result = Deadline::whereDate('date', '=', date('Y-m-d', $date))->get();
+        return $result ? response()->json($result, 200) : response()->json(null, 404);
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/deadlines/{id}",
+     *     tags={"deadlines"},
+     *     summary="Updates deadline",
+     *     description="",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *     @OA\RequestBody(
+     *         description="JSON object",
+     *         required=true,
+     *     @OA\JsonContent(
+     *type="object",
+     *      @OA\Property(property="name", type="string"),
+     *      @OA\Property(property="description", type="string"),
+     *      @OA\Property(property="date", type="string")
+     *)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="updated",
+     *     )
+     * )
      */
     public function update(Request $request, Deadline $deadline)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Deadline::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
 
             $this->deadlines_repo->update($request['id'], $request->all());
-            return response()->json($deadline, 200);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+        return response()->json(null, 200);
+//        }
+//        else{
+//            return response()->json(null, 403);
+//        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/deadlines/{id}",
+     *     summary="Deletes deadline by id",
+     *      tags={"deadlines"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=204,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @param $id
-     * @return Response
-     */
+     *          )
+     *     )
+     * )
+     * */
+
     public function destroy($id)
     {
-        $current_user = User::find(Auth::user()->id);
-        if($current_user->hasRole('Admin')) {
+//        $current_user = User::find(Auth::user()->id);
+//        if($current_user->hasRole('Admin')) {
             $deadline = Deadline::find($id);
             if (is_null($deadline)) {
                 return response()->json(null, 404);
             }
             $this->deadlines_repo->delete($id);
             return response()->json(null, 204);
-        }
-        else{
-            return response()->json(null, 403);
-        }
+//        }
+//        else{
+//            return response()->json(null, 403);
+//        }
     }
 }
