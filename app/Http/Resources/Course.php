@@ -20,6 +20,7 @@ class Course extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'location' => $this ->location,
+            'target_audience' => $this->target_audience,
             'host' => $this->host,
             'start' => $this->start,
             'end' => $this->end,

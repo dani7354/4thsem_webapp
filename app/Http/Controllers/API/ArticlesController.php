@@ -196,6 +196,7 @@ class ArticlesController extends Controller
             $article->title = $request['title'];
             $article->content = $request['content'];
             $this->update_tags($request['tags'], $article);
+            $article->save();
 
 
             return response()->json($article, 200);
