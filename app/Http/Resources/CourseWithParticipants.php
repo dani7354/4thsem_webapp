@@ -23,6 +23,7 @@ class CourseWithParticipants extends JsonResource
             'host' => $this->host,
             'start' => $this->start,
             'end' => $this->end,
+            'target_audience' => $this->target_audience,
             'participants' => $this->participants,
 
         );
