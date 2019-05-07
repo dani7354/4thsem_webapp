@@ -12,13 +12,6 @@ use Illuminate\Support\Facades\Validator;
 class DeadlinesController extends Controller
 {
 
-
-    public function __construct(DeadlinesRepo $deadlines)
-    {
-        $this->deadlines_repo = $deadlines;
-
-    }
-
     /**
      * @OA\Get(
      *     path="/deadlines",
@@ -37,7 +30,7 @@ class DeadlinesController extends Controller
      */
     public function index()
     {
-        return response()->json($this->deadlines_repo->all(), 200);
+        return response()->json(Deadline::all(), 200);
     }
 
     /**
@@ -70,7 +63,7 @@ class DeadlinesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $deadline = $this->deadlines_repo->create($request->all());
+            $deadline = Deadline::create($request->all());
             return response()->json($deadline, 201);
 //        }
 //        else{
@@ -101,10 +94,9 @@ class DeadlinesController extends Controller
      *     )
      * )
      * */
-    public function show($id)
+    public function show(Deadline $deadline)
     {
-        $deadline = $this->deadlines_repo->find($id);
-        return is_null($deadline) ? response()->json(null, 404) : response()->json($deadline, 200);
+        return response()->json($deadline, 200);
     }
 
     /**
@@ -135,7 +127,7 @@ class DeadlinesController extends Controller
     {
         $date = strtotime($request['date']);
         $result = Deadline::whereDate('date', '=', date('Y-m-d', $date))->get();
-        return $result ? response()->json($result, 200) : response()->json(null, 404);
+        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no deadlines found'], 404);
     }
 
     /**
@@ -177,8 +169,7 @@ class DeadlinesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-
-            $this->deadlines_repo->update($request['id'], $request->all());
+           $deadline->update($request->all());
         return response()->json(null, 200);
 //        }
 //        else{
@@ -210,15 +201,11 @@ class DeadlinesController extends Controller
      * )
      * */
 
-    public function destroy($id)
+    public function destroy(Deadline $deadline)
     {
 //        $current_user = User::find(Auth::user()->id);
 //        if($current_user->hasRole('Admin')) {
-            $deadline = Deadline::find($id);
-            if (is_null($deadline)) {
-                return response()->json(null, 404);
-            }
-            $this->deadlines_repo->delete($id);
+        $deadline->delete();
             return response()->json(null, 204);
 //        }
 //        else{
