@@ -4,17 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Meeting;
-use App\Repositories\MeetingsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class MeetingsController extends Controller
 {
 
-    public function __construct(MeetingsRepository $meetings)
-    {
-        $this->meetings = $meetings;
-    }
 
     /**
      * @OA\Get(
@@ -34,7 +29,7 @@ class MeetingsController extends Controller
      */
     public function index()
     {
-        return response()->json($this->meetings->all(), 200);
+        return response()->json(Meeting::all(), 200);
     }
 
     /**
@@ -69,8 +64,8 @@ class MeetingsController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        $this->meetings->create($request->all());
-        return response()->json("", 201);
+        $meeting = Meeting::create($request->all());
+        return response()->json($meeting, 201);
     }
 
     /**
@@ -98,10 +93,9 @@ class MeetingsController extends Controller
      * */
 
 
-    public function show($id)
+    public function show(Meeting $meeting)
     {
-        $result = $this->meetings->find($id);
-        return is_null($result) ? response()->json("not found", 404) : response()->json($result, 200);
+       return response()->json($meeting, 200);
     }
 
     /**
@@ -132,7 +126,7 @@ class MeetingsController extends Controller
     {
         $date = strtotime($request['date']);
         $result = Meeting::whereDate('start', '=', date('Y-m-d', $date))->get();
-        return $result ? response()->json($result, 200) : response()->json(null, 404);
+        return $result->first() ? response()->json($result, 200) : response()->json(['message' => 'no meetings found'], 404);
     }
 
 
@@ -179,6 +173,7 @@ class MeetingsController extends Controller
             return response()->json($validator->errors(), 400);
         }
         $meeting->update($request->all());
+        $meeting->fresh();
         return response()->json($meeting, 200);
     }
 
