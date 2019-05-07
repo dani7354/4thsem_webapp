@@ -106,9 +106,13 @@ class ArticlesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-        $request['user_id'] = 1;
-            $article = $this->articles_repo->create($request->all());
 
+        $article = new Article();
+        $article->title = $request['title'];
+        $article->content = $request['content'];
+        $article->date_created = now();
+        $article->user_id = 1;
+        $article->save();
 
             if (!empty($request['tags'])) {
 
@@ -145,11 +149,9 @@ class ArticlesController extends Controller
      *     )
      * )
      * */
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = $this->articles_repo->find($id);
-        return is_null($article) ? response()->json(null, 404) : response(new ArticleResource($article), 200);
-
+        return response()->json(new ArticleResource($article), 200);
     }
 
     /**
@@ -234,15 +236,12 @@ class ArticlesController extends Controller
 
 
 
-    public function destroy($id)
+    public function destroy(Article $article)
     {
         //   $current_user = User::find(Auth::user()->id);
         //  if($current_user->hasRole('Admin')) {
-            $article = $this->articles_repo->find($id);
-            if (is_null($article)) {
-                return response()->json(null, 404);
-            }
-            $this->articles_repo->delete($id);
+
+            $article->delete();
             return response()->json(null, 204);
         //    }
         //    else{
