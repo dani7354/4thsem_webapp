@@ -166,7 +166,7 @@ class CoursesController extends Controller
             if($validator->fails()){
                 return response()->json($validator->errors(), 400);
             }
-            $this->courses->update($request['id'], $request->all());
+            $this->courses->update($course->id, $request->all());
         return response()->json("", 200);
 //        }
 //        else{
