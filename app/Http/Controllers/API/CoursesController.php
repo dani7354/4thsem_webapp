@@ -296,14 +296,15 @@ class CoursesController extends Controller
      *             type="integer"
      *         )
      * ),
-     *     @OA\RequestBody(
-     *         description="JSON object",
+     *   @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="email",
      *         required=true,
-     *     @OA\JsonContent(
-     *type="object",
-     *      @OA\Property(property="email", type="string")
-     *  )
-     *     ),
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
      *     @OA\Response(
      *         response=200,
      *         description="created",
