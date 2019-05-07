@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Validator;
 class ArticlesController extends Controller
 {
 
-    public function __construct(ArticlesRepo $articles)
-    {
-        $this->articles_repo = $articles;
-    }
-
     /**
      * @OA\Get(
      *     path="/articles",
@@ -37,7 +32,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return response()->json(new ArticleCollectionResource($this->articles_repo->all()), 200);
+        return response()->json(new ArticleCollectionResource(Article::all()), 200);
     }
 
     /**
