@@ -16,12 +16,6 @@ use Illuminate\Support\Facades\Validator;
 class CoursesController extends Controller
 {
 
-    private $courses;
-    // constructor injection
-    public function __construct(CoursesRepo $course) {
-
-        $this->courses = $course;
-    }
     /**
      * @OA\Get(
      *     path="/courses",
@@ -40,7 +34,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        return response()->json($this->courses->all(), 200);
+        return response()->json(Course::all(), 200);
     }
 
     /**
@@ -78,16 +72,8 @@ class CoursesController extends Controller
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-            $course = $this->courses->create(
-                [
-                    'name' => $request['name'],
-                    'description' => $request['description'],
-                    'start' => $request['start'],
-                    'end' => $request['end'],
-                    'location' => $request['location'],
-                    'host' => $request['host'],
-                    'target_audience' => $request['target_audience']
-                ]);
+            $course = Course::create($request->all());
+
             return response()->json($course, 201);
 //        }else{
 //            return response()->json(null, 403);
@@ -117,10 +103,9 @@ class CoursesController extends Controller
      *     )
      * )
      * */
-    public function show($id)
+    public function show(Course $course)
     {
-        $course = $this->courses->find($id);
-        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseResource($course), 200);
+        return response()->json(new CourseResource($course), 200);
     }
 
     /**
@@ -166,8 +151,9 @@ class CoursesController extends Controller
             if($validator->fails()){
                 return response()->json($validator->errors(), 400);
             }
-            $this->courses->update($course->id, $request->all());
-        return response()->json("", 200);
+            $course->update($request->all());
+            $course->fresh();
+        return response()->json($course, 200);
 //        }
 //        else{
 //            return response()->json(null, 403);
@@ -199,15 +185,12 @@ class CoursesController extends Controller
      *     )
      * )
      * */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
 //        $current_user = User::find(Auth::user()->id);
 //        if($current_user->hasRole('Admin')) {
-            $course = $this->courses->find($id);
-            if (is_null($course)) {
-                return response()->json(null, 404);
-            }
-            $this->courses->delete($id);
+
+            $course->delete();
             return response()->json(null, 204);
 //        }
 //        else {
@@ -239,9 +222,9 @@ class CoursesController extends Controller
      * )
      * */
 
-    public function participants(Request $request, Course $course){
-        $course = $this->courses->findWithParticipants($course->id);
-        return is_null($course) ? response()->json(null, 404) : response()->json(new CourseWithParticipantsResource($course), 200);
+    public function participants(Course $course){
+        $course = Course::with('participants')->find($course->id);
+        return response()->json(new CourseWithParticipantsResource($course), 200);
     }
 
     /**
@@ -276,8 +259,6 @@ class CoursesController extends Controller
      */
     public function participate(Request $request, Course $course){
 
-        //TODO: find some more relevant status codes for the responses
-
 //        $current_user = User::find(Auth::user()->id);
 //        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
             $participant = User::where('email', $request['email'])->first();
@@ -285,7 +266,7 @@ class CoursesController extends Controller
                 return response()->json(["message" => "Employee not found"], 404);
             }
             else if($course->participants()->where('id', '=', $participant->id)->exists()){
-                return response()->json(["message" => "The employeee is already signed up for the course"], 400);
+                return response()->json(["message" => "The employee is already signed up for the course"], 400);
             }
 
             try {
@@ -293,7 +274,7 @@ class CoursesController extends Controller
             } catch (Exception $exception) {
                 return response()->json($exception->getMessage(), 400);
             }
-            return response()->json(['message' => 'Success'], 200);
+            return response()->json(['message' => 'Success'], 201);
 //        }
 //        else{
 //            return response()->json(['message' => 'Forbidden'], 403);
