@@ -15,8 +15,8 @@ class Deadline extends Model
     );
 
     public static $validation_rules = array(
-       'name' => 'required',
-        'date' => 'required'
+       'name' => 'required|max:255',
+        'date' => 'required|date'
 
     );
 }

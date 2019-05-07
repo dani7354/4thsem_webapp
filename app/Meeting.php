@@ -23,12 +23,12 @@ class Meeting extends Model
 
 
     public static $validation_rules = array(
-        'name' => 'required',
-        'description' => 'required',
-        'host' => 'required',
-        'location' => 'required',
-        'start' => 'required',
-        'end' => 'required',
+        'name' => 'required|max:255',
+        'description' => 'required|max:16000',
+        'host' => 'required|max:255',
+        'location' => 'required|max:255',
+        'start' => 'required|date',
+        'end' => 'required|date',
 
     );
 

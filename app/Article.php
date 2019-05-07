@@ -23,8 +23,8 @@ class Article extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public static  $validation_rules = array(
-        'title' => 'required',
-        'content' => 'required',
+        'title' => 'required|max:255',
+        'content' => 'required|max:16000',
 
     );
 }

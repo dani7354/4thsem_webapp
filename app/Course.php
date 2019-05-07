@@ -20,13 +20,13 @@ class Course extends Model
     }
 
     public static $validation_rules = array(
-        'name' => 'required',
-        'description' => 'required',
-        'location' => 'required',
-        'start' =>'required',
-        'end' => 'required',
-        'target_audience' => 'required',
-        'host' => 'required'
+        'name' => 'required|max:255',
+        'description' => 'required|max:16000',
+        'location' => 'required|max:255',
+        'start' =>'required|date',
+        'end' => 'required|date',
+        'target_audience' => 'required|max:255',
+        'host' => 'required|max:255'
 
     );
 
