@@ -31,7 +31,11 @@ class ApiTokenController extends Controller
             ]
         );
         if ($login_successful) {
-            return response()->json(["token" => User::where('email', $request['email'])->first()->api_token], 200);
+            $user = User::where('email', $request['email'])->first();
+            return response()->json([
+                "token" => $user->api_token,
+                "name" => $user->name,
+                "email" => $user->email], 200);
 
         }
         return response()->json("Unauthorized", 401);

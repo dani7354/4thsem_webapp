@@ -97,4 +97,4 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-//Route::post('login', 'API\APITokenController@login');
+Route::post('auth/token', 'API\APITokenController@login');
