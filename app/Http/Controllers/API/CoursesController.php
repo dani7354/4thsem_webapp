@@ -107,6 +107,35 @@ class CoursesController extends Controller
     {
         return response()->json(new CourseResource($course), 200);
     }
+    /**
+     * @OA\Get(
+     *     path="/courses/date/{date}",
+     *     summary="Finds courses by date",
+     *      tags={"courses"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="Date",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     * ),
+     *    @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
+     *
+     *          )
+     *     )
+     * )
+     * */
+    public function get_by_date(Request $request)
+    {
+        $date = strtotime($request['date']);
+        $result = Course::whereDate('start', '=', date('Y-m-d', $date))->get();
+        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no courses found'], 404);
+    }
 
     /**
      * @OA\Put(

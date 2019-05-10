@@ -25,6 +25,7 @@ Route::group(['prefix' => 'courses'], function(){
 
     Route::get('', 'API\CoursesController@index');
     Route::get('{course}', 'API\CoursesController@show');
+    Route::get('date/{date}', 'API\CoursesController@get_by_date');
 
 
        Route::middleware('auth:api')->group(function () {

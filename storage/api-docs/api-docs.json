@@ -387,6 +387,36 @@
                 }
             }
         },
+        "/courses/date/{date}": {
+            "get": {
+                "tags": [
+                    "courses"
+                ],
+                "summary": "Finds courses by date",
+                "operationId": "App\\Http\\Controllers\\API\\CoursesController::get_by_date",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "Date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/courses/{id}/participants": {
             "get": {
                 "tags": [
