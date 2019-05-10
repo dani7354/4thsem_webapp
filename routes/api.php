@@ -19,7 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-
 // courses
 Route::group(['prefix' => 'courses'], function(){
 
@@ -77,8 +76,6 @@ Route::group(['prefix' => 'deadlines'], function(){
 
 // meetings
 Route::group(['prefix' => 'meetings'], function () {
-
-
     Route::get('', 'API\MeetingsController@index');
     Route::get('{meeting}', 'API\MeetingsController@show');
 
@@ -97,4 +94,4 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-Route::post('login', 'API\APITokenController@login');
+Route::post('auth', 'API\APITokenController@login');

@@ -34,7 +34,7 @@ class ApiTokenController extends Controller
             $user = User::where('email', $request['email'])->first();
 
             $token = Str::random(60);
-            $user->api_token = hash("sha256", $token);
+            $user->api_token = $token;
             $user->save();
 
 
