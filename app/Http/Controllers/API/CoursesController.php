@@ -135,7 +135,7 @@ class CoursesController extends Controller
     {
         $date = strtotime($request['date']);
         $result = Course::whereDate('start', '=', date('Y-m-d', $date))->get();
-        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no courses found'], 404);
+        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no courses found'], 200);
     }
 
     /**

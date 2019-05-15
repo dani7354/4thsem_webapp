@@ -129,7 +129,7 @@ class DeadlinesController extends Controller
     {
         $date = strtotime($request['date']);
         $result = Deadline::whereDate('date', '=', date('Y-m-d', $date))->get();
-        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no deadlines found'], 404);
+        return $result->first() ? response()->json($result, 200) : response()->json([ 'message' => 'no deadlines found'], 200);
     }
 
     /**

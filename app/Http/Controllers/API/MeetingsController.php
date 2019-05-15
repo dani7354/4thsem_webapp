@@ -126,7 +126,7 @@ class MeetingsController extends Controller
     {
         $date = strtotime($request['date']);
         $result = Meeting::whereDate('start', '=', date('Y-m-d', $date))->get();
-        return $result->first() ? response()->json($result, 200) : response()->json(['message' => 'no meetings found'], 404);
+        return $result->first() ? response()->json($result, 200) : response()->json(['message' => 'no meetings found'], 200);
     }
 
 
