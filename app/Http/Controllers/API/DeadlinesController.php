@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Deadline;
 use App\Http\Controllers\Controller;
 use App\Repositories\DeadlinesRepository as DeadlinesRepo;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -57,18 +59,18 @@ class DeadlinesController extends Controller
      */
     public function store(Request $request)
     {
-//        $current_user = User::find(Auth::user()->id);
-//        if($current_user->hasRole('Admin')) {
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Deadline::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
             $deadline = Deadline::create($request->all());
             return response()->json($deadline, 201);
-//        }
-//        else{
-//            return response()->json(null, 403);
-//        }
+        }
+        else{
+            return response()->json(null, 403);
+        }
     }
 
     /**
@@ -163,18 +165,18 @@ class DeadlinesController extends Controller
      */
     public function update(Request $request, Deadline $deadline)
     {
-//        $current_user = User::find(Auth::user()->id);
-//        if($current_user->hasRole('Admin')) {
+       $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Deadline::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
            $deadline->update($request->all());
         return response()->json(null, 200);
-//        }
-//        else{
-//            return response()->json(null, 403);
-//        }
+        }
+        else{
+            return response()->json(null, 403);
+        }
     }
 
     /**
@@ -203,13 +205,13 @@ class DeadlinesController extends Controller
 
     public function destroy(Deadline $deadline)
     {
-//        $current_user = User::find(Auth::user()->id);
-//        if($current_user->hasRole('Admin')) {
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
         $deadline->delete();
             return response()->json(null, 204);
-//        }
-//        else{
-//            return response()->json(null, 403);
-//        }
+        }
+        else{
+            return response()->json(null, 403);
+        }
     }
 }

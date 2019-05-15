@@ -8,7 +8,9 @@ use App\Http\Resources\Article as ArticleResource;
 use App\Http\Resources\ArticleCollection as ArticleCollectionResource;
 use App\Repositories\ArticlesRepository as ArticlesRepo;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ArticlesController extends Controller
@@ -94,8 +96,8 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        // $current_user = User::find(Auth::user()->id);
-        //if($current_user->hasRole('Admin')) {
+         $current_user = User::find(Auth::user()->id);
+        if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Article::$validation_rules);
 
             if ($validator->fails()) {
@@ -106,7 +108,7 @@ class ArticlesController extends Controller
         $article->title = $request['title'];
         $article->content = $request['content'];
         $article->date_created = now();
-        $article->user_id = 1;
+        $article->user_id = $current_user->id;
         $article->save();
 
             if (!empty($request['tags'])) {
@@ -115,10 +117,10 @@ class ArticlesController extends Controller
             }
 
             return response()->json(null, 201);
-        //   }
-        //  else{
-        //      return response()->json(null, 403);
-        //  }
+           }
+          else{
+              return response()->json(null, 403);
+          }
     }
 
     /**
@@ -184,8 +186,8 @@ class ArticlesController extends Controller
 
     public function update(Request $request, Article $article)
     {
-        //   $current_user = User::find(Auth::user()->id);
-        // if($current_user->hasRole('Admin')) {
+           $current_user = User::find(Auth::user()->id);
+         if($current_user->hasRole('Admin')) {
             $validator = Validator::make($request->all(), Article::$validation_rules);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
@@ -197,10 +199,10 @@ class ArticlesController extends Controller
 
 
             return response()->json($article, 200);
-        //  }
-        // else{
-        //  return response()->json(null, 403);
-        //}
+          }
+         else{
+          return response()->json(null, 403);
+        }
 
     }
 
@@ -233,15 +235,15 @@ class ArticlesController extends Controller
 
     public function destroy(Article $article)
     {
-        //   $current_user = User::find(Auth::user()->id);
-        //  if($current_user->hasRole('Admin')) {
+           $current_user = User::find(Auth::user()->id);
+          if($current_user->hasRole('Admin')) {
 
             $article->delete();
             return response()->json(null, 204);
-        //    }
-        //    else{
-        //      return response()->json(null, 403);
-        //   }
+            }
+            else{
+              return response()->json(null, 403);
+           }
     }
 
     // Helper methods for saving and updating tags

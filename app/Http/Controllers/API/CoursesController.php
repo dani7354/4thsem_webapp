@@ -10,6 +10,7 @@ use App\Repositories\CoursesRepository as CoursesRepo;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -288,8 +289,8 @@ class CoursesController extends Controller
      */
     public function participate(Request $request, Course $course){
 
-//        $current_user = User::find(Auth::user()->id);
-//        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
+        $current_user = User::find(Auth::user()->id);
+        if($current_user->hasAnyRole(['Employee', 'Admin'])) {
             $participant = User::where('email', $request['email'])->first();
             if(!$participant){
                 return response()->json(["message" => "Employee not found"], 404);
@@ -304,10 +305,10 @@ class CoursesController extends Controller
                 return response()->json($exception->getMessage(), 400);
             }
             return response()->json(['message' => 'Success'], 201);
-//        }
-//        else{
-//            return response()->json(['message' => 'Forbidden'], 403);
-//        }
+       }
+       else{
+           return response()->json(['message' => 'Forbidden'], 403);
+        }
     }
 
     /**
@@ -344,9 +345,9 @@ class CoursesController extends Controller
     public function cancel(Request $request, Course $course){
 
 
-//        $current_user = User::find(Auth::user()->id);
-//
-//        if($current_user->hasAnyRole(['Employee', 'Admin'])){
+       $current_user = User::find(Auth::user()->id);
+
+        if($current_user->hasAnyRole(['Employee', 'Admin'])){
             $participant = User::where('email', $request['email'])->first();
 
             if(!$participant){
@@ -361,10 +362,10 @@ class CoursesController extends Controller
                 return response()->json($exception->getMessage(), 400);
             }
             return response()->json(['message' => 'Cancel completed'], 200);
-//        }
-//        else{
-//            return response()->json(['message' => 'Forbidden'], 403);
-//        }
+        }
+       else{
+           return response()->json(['message' => 'Forbidden'], 403);
+       }
 
 
     }
