@@ -95,4 +95,4 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-Route::post('auth', 'API\APITokenController@login');
+Route::post('auth', 'API\ApiTokenController@login');
