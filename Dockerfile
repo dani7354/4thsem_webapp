@@ -5,5 +5,6 @@ RUN a2enmod rewrite
 
 ADD . /var/www
 ADD ./public /var/www/html
+EXPOSE 8000
 
 RUN chown -R www-data:www-data /var/www

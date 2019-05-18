@@ -88,6 +88,9 @@ Route::group(['prefix' => 'meetings'], function () {
       });
 });
 
+
+// tags
+
 // tokens
 Route::middleware('auth:api')->group(function () {
     Route::get('token', 'API\ApiTokenController@show');
