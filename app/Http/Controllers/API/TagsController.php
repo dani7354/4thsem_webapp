@@ -9,10 +9,23 @@ use App\Tag;
 
 class TagsController extends Controller
 {
+
+
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/tags",
+     *     tags={"tags"},
+     *     summary="Returns all tags",
+     *     description="All tags as JSON collection",
+     *     operationId="index",
+     *     @OA\Response(
+     *         response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(
      *
-     * @return \Illuminate\Http\Response
+     *          )
+     *     )
+     * )
      */
     public function index()
     {
