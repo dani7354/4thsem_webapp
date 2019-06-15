@@ -915,6 +915,26 @@
                     }
                 }
             }
+        },
+        "/tags": {
+            "get": {
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Returns all tags",
+                "description": "All tags as JSON collection",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [
